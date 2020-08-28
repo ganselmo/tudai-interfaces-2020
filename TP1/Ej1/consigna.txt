@@ -1,6 +1,0 @@
-Repaso Javascript: Definir una matriz de 100 elementos x 100 elementos y completarla con valores
-enteros random, y resuelva los siguientes incisos:
-a. Escribir una función que retorne el valor máximo de toda la matriz
-b. Escribir una función que retorne el valor máximo contenido en las filas pares y el valor mínimo en
-las filas impares
-c. Calcular el valor promedio de cada fila y guardarlos en un arreglo

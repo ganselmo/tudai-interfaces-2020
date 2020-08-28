@@ -13,8 +13,22 @@ for (let i = 0; i < columns; i++) {
 }
 
 console.table(matrix)
-
+//a
 function returnMax()
 {
     
+}
+
+//b
+
+function returns()
+{
+
+}
+
+//c
+
+function returnRowAvg()
+{
+    this.matrix
 }
