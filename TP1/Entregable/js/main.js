@@ -1,55 +1,139 @@
+
+
 "use strict"
+import {pencil,erase} from './tools.js';
 
 document.addEventListener("DOMContentLoaded", function () {
 
     const canvas = document.querySelector('#mycanvas');
+    canvas.height = 600;
+    canvas.width = 1000;
     const input = document.querySelector('#file');
+
     let context = canvas.getContext('2d');
-    
+    const pos = { x: 0, y: 0 };
+
     context.fillStyle = "#FFFFFF";
-    context.fillRect(0,0,canvas.width,canvas.heigth)
+    context.fillRect(0, 0, canvas.width, canvas.heigth)
+    let actualTool = pencil;
+    const blankButton = document.querySelector('#blankButton');
+    const pencilButton = document.querySelector('#pencilButton');
+    const eraseButton = document.querySelector('#eraseButton');
+
+    blankButton.addEventListener("click", function () {
+        imageBlank(context)
+    })
+    canvas.style.cursor = "url('./assets/icons/pencil-cursor.png'), auto";
+    pencilButton.addEventListener('click',
+        function () {
+            actualTool = pencil;
+            canvas.style.cursor = "url('./assets/icons/pencil-cursor.png'), auto";
+
+        })
+
+    eraseButton.addEventListener('click',
+        function () {
+            actualTool = erase;           
+            canvas.style.cursor = "url('./assets/icons/icons8-erase-30.png'), auto";
+        })
 
 
 
 
 
-    input.onchange = e =>{
+
+
+
+
+    canvas.addEventListener('mouseup', function () {
+        this.removeEventListener('mousemove', createEvlistMove, false);
+    })
+    canvas.addEventListener('mouseout', function () {
+        this.removeEventListener('mousemove', createEvlistMove, false)
+    })
+    canvas.addEventListener('mousedown', createEvListDown);
+
+    function createEvListDown(e) {
+        setActualPos(e);
+        toolDraw(e);
+        this.addEventListener('mousemove', createEvlistMove);
+    }
+    function createEvlistMove(e) {
+
+        toolDraw(e);
+    }
+
+    function toolDraw(e) {
+
+        if (e.buttons !== 1) return;
+
+        context.beginPath();
+
+        context.lineWidth = actualTool.lineWidth;
+        context.lineCap = actualTool.lineCap;
+        context.strokeStyle = actualTool.strokeStyle;
+
+        context.moveTo(pos.x, pos.y);
+        setActualPos(e);
+        context.lineTo(pos.x, pos.y);
+
+        context.stroke();
+
+
+    }
+
+
+
+
+
+    input.onchange = e => {
         const file = e.target.files[0];
-        console.log(file);
-        
-
-        const reader = new FileReader();
-
-        reader.readAsDataURL(file)
-
-        reader.onload = readerEvent=>
-        {
-            const content =readerEvent.target.result;
-            const image = new Image();
-            image.src = content;
-
-            image.onload = function()
-            {
-                const imageAspectRatio = (1.0 * this.height)/this.height;
-                const imageScaleWidth = canvas.width;
-                const imageScaleHeight = canvas.width * imageAspectRatio;
-
-                context.drawImage(this,0,0,imageScaleWidth,imageScaleHeight);
-                console.log(context)
-            }
+        if (file != undefined) {
+            imageFromFile(file);
         }
+
+        // e.target.files[0] = undefined
     }
-    // Iterate through every pixel
-    function setPixel(imageData, x, y, r, g, b) {
-        let index = (x + y * imageData.width) * 4;
-        imageData.data[index] = r;  // R value
-        imageData.data[index + 1] = g;    // G value
-        imageData.data[index + 2] = b;  // B value
-        imageData.data[index + 3] = 255;  // A value
+
+    function setActualPos(e) {
+
+        pos.x = e.offsetX + actualTool.cursorOffsetX;
+        pos.y = e.offsetY + actualTool.cursorOffsetY;
     }
+
 
     // Draw image data to the canvas
-  
+
+    function imageDrawer(image, context) {
+
+        const imageAspectRatio = (1.0 * image.height) / image.width;
+        const imageScaleWidth = canvas.width;
+        const imageScaleHeight = canvas.width * imageAspectRatio;
+        context.drawImage(image, 0, 0, imageScaleWidth, imageScaleHeight);
+
+    }
+
+    function imageFromFile(file) {
+
+        const reader = new FileReader();
+        reader.readAsDataURL(file)
+        reader.onload = readerEvent => {
+            const content = readerEvent.target.result;
+            const image = new Image();
+            image.src = content;
+            image.onload = function () {
+                imageDrawer(this, context)
+            }
+
+        }
+    }
+
+    function imageBlank(context) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+    }
+
+
 
 
 
