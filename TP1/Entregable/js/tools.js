@@ -8,7 +8,7 @@ export const pencil =
 
 }
 
-export const erase = 
+export const eraser = 
 {
     lineWidth: 10,
     lineCap: 'square',
