@@ -18,24 +18,39 @@
     <main>
         <aside>
             <div>Toolbar </div>
-            <div><input type="file"
-                id="file" name="file"
-                accept="image/png, image/jpeg"></div>
+            <div><input type="file" id="file" name="file" accept="image/png, image/jpeg"></div>
             <div>tools</div>
             <div>
                 <button id="blankButton">New</button>
                 <button id="pencilButton">pencil</button>
-                <button id="eraseButton">erase</button>
+                <button id="eraserButton">erase</button>
                 <!-- <button>colorSelector</button> -->
-                
+
             </div>
             <div>Effects</div>
             <div>
-                <button id="blankButton">New</button>
-                <button id="pencilButton">pencil</button>
-                <button id="eraseButton">erase</button>
-      
-                
+                <div>
+                    <button id="blankButton">Negatives</button>
+                </div>
+                <div>
+                    <button id="nLightness">-</button><button>lightness</button><button id="pLightness">+</button>
+                </div>
+                <div>
+                    <button id="eraseButton">binarization</button>
+                </div>
+                <div>
+                    <button id="eraseButton">sepia</button>
+                </div>
+
+            </div>
+
+            <div>Effects</div>
+            <div>
+                <button id="blankButton">Negatives</button>
+                <button id="pencilButton">lightness</button>
+                <button id="eraseButton">binarization</button>
+                <button id="eraseButton">sepia</button>
+
             </div>
         </aside>
         <section>
@@ -44,7 +59,7 @@
                 Your browser does not support the HTML canvas tag.
             </canvas>
         </section>
-        
+
     </main>
     <footer>
         <div>Foooter</div>

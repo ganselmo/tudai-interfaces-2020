@@ -1,7 +1,7 @@
 
 
 "use strict"
-import {pencil,erase} from './tools.js';
+import {pencil,eraser} from './tools.js';
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let actualTool = pencil;
     const blankButton = document.querySelector('#blankButton');
     const pencilButton = document.querySelector('#pencilButton');
-    const eraseButton = document.querySelector('#eraseButton');
+    const eraserButton = document.querySelector('#eraserButton');
 
     blankButton.addEventListener("click", function () {
         imageBlank(context)
@@ -31,9 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         })
 
-    eraseButton.addEventListener('click',
+    eraserButton.addEventListener('click',
         function () {
-            actualTool = erase;           
+            actualTool = eraser;           
             canvas.style.cursor = "url('./assets/icons/icons8-erase-30.png'), auto";
         })
 
