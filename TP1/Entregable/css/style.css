@@ -17,6 +17,10 @@ body {
     
 }
 
+#canvasSpace{
+    padding-top:1vw
+}
+
 
 header {
     grid-area: header;

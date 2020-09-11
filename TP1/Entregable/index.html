@@ -27,37 +27,38 @@
                 <!-- <button>colorSelector</button> -->
 
             </div>
-            <div>Effects</div>
+            <div>Simple Effects</div>
             <div>
                 <div>
-                    <button id="blankButton">Negatives</button>
+                    <button id="negative">Negatives</button>
+                </div>
+  
+                <div>
+                    <button id="binarization">binarization</button>
                 </div>
                 <div>
-                    <button id="nLightness">-</button><button>lightness</button><button id="pLightness">+</button>
-                </div>
-                <div>
-                    <button id="eraseButton">binarization</button>
-                </div>
-                <div>
-                    <button id="eraseButton">sepia</button>
+                    <button id="sepia">sepia</button>
                 </div>
 
             </div>
 
-            <div>Effects</div>
+            <div>Saturation</div>
+                <div>
+                    <button id="nSaturation">-</button><button>Saturation</button><button id="pSaturation">+</button>
+                </div>
+            </div>
+            <div>Lightness</div>
             <div>
-                <button id="blankButton">Negatives</button>
-                <button id="pencilButton">lightness</button>
-                <button id="eraseButton">binarization</button>
-                <button id="eraseButton">sepia</button>
-
+                <button id="nLightness">-</button><button>Lightness</button><button id="pLightness">+</button>
+            </div>
             </div>
         </aside>
         <section>
-            <div>Main</div>
+            <div id='canvasSpace'>
             <canvas id="mycanvas">
                 Your browser does not support the HTML canvas tag.
             </canvas>
+        </div>
         </section>
 
     </main>

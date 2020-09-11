@@ -1,18 +1,31 @@
-
-
 "use strict"
-import {pencil,eraser} from './tools.js';
-import {SimpleEffects} from './simpleEffects.js';
+import { pencil, eraser } from './tools.js';
+import { negative, binarization, sepia, lightness,saturation } from './simpleEffects.js';
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    const canvas = document.querySelector('#mycanvas');
-    canvas.height = 600;
-    canvas.width = 1000;
-    const input = document.querySelector('#file');
 
+    const canvas = document.querySelector('#mycanvas');
+    const canvasSpace = document.querySelector('#canvasSpace')
+    canvas.height = window.innerHeight * 0.75;
+    canvas.width = canvasSpace.offsetWidth * 0.95;
+    let change = false;
     let context = canvas.getContext('2d');
     const pos = { x: 0, y: 0 };
+    function reportWindowSize() {
+        if (!change) {
+            canvas.height = window.innerHeight * 0.75;
+            canvas.width = canvasSpace.offsetWidth * 0.95;
+        }
+
+
+    }
+
+    window.onresize = reportWindowSize;
+
+    const input = document.querySelector('#file');
+
+
 
     context.fillStyle = "#FFFFFF";
     context.fillRect(0, 0, canvas.width, canvas.heigth)
@@ -26,25 +39,19 @@ document.addEventListener("DOMContentLoaded", function () {
     blankButton.addEventListener("click", function () {
         imageBlank(context)
     })
-    canvas.style.cursor = "url('./assets/icons/pencil-cursor.png'), auto";
+    canvasSpace.style.cursor = "url('./assets/icons/pencil-cursor.png'), auto";
     pencilButton.addEventListener('click',
         function () {
             actualTool = pencil;
-            canvas.style.cursor = "url('./assets/icons/pencil-cursor.png'), auto";
+            canvasSpace.style.cursor = "url('./assets/icons/pencil-cursor.png'), auto";
 
         })
 
     eraserButton.addEventListener('click',
         function () {
-            actualTool = eraser;           
-            canvas.style.cursor = "url('./assets/icons/icons8-erase-30.png'), auto";
+            actualTool = eraser;
+            canvasSpace.style.cursor = "url('./assets/icons/icons8-erase-30.png'), auto";
         })
-
-
-
-
-
-
 
 
 
@@ -90,6 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     input.onchange = e => {
+
+        change = true;
         const file = e.target.files[0];
         if (file != undefined) {
             imageFromFile(file);
@@ -99,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function setActualPos(e) {
-      
+
         pos.x = e.offsetX + actualTool.cursorOffsetX;
         pos.y = e.offsetY + actualTool.cursorOffsetY;
 
@@ -138,6 +147,40 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+
+    const negativeButton = document.querySelector('#negative');
+
+    negativeButton.addEventListener('click', function () {
+        negative.process(context.getImageData(0,0,canvas.width,canvas.height),context)
+    })
+    const nLightnessButton = document.querySelector('#nLightness');
+    nLightnessButton.addEventListener('click', function () {
+
+        lightness.process(context.getImageData(0,0,canvas.width,canvas.height),context,-5)
+    })
+    const pLightnessButton = document.querySelector('#pLightness');
+    pLightnessButton.addEventListener('click', function () {
+
+        lightness.process(context.getImageData(0,0,canvas.width,canvas.height),context,5)
+    })
+    const nSaturationButtion = document.querySelector('#nSaturation');
+    nSaturationButtion.addEventListener('click', function () {
+
+        saturation.process(context.getImageData(0,0,canvas.width,canvas.height),context,-5)
+    })
+    const pSaturationButtion = document.querySelector('#pSaturation');
+    pSaturationButtion.addEventListener('click', function () {
+
+        saturation.process(context.getImageData(0,0,canvas.width,canvas.height),context,5)
+    })
+    const binarizationButton = document.querySelector('#binarization');
+    binarizationButton.addEventListener('click', function () {
+        binarization.process()
+    })
+    const sepiaButton = document.querySelector('#sepia');
+    sepiaButton.addEventListener('click', function () {
+        sepia.process(context.getImageData(0,0,canvas.width,canvas.height),context)
+    })
 
 
 
