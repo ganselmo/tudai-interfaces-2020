@@ -2,6 +2,7 @@
 
 "use strict"
 import {pencil,eraser} from './tools.js';
+import {SimpleEffects} from './simpleEffects.js';
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -19,6 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const blankButton = document.querySelector('#blankButton');
     const pencilButton = document.querySelector('#pencilButton');
     const eraserButton = document.querySelector('#eraserButton');
+
+
 
     blankButton.addEventListener("click", function () {
         imageBlank(context)
@@ -96,9 +99,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function setActualPos(e) {
-
+      
         pos.x = e.offsetX + actualTool.cursorOffsetX;
         pos.y = e.offsetY + actualTool.cursorOffsetY;
+
     }
 
 
