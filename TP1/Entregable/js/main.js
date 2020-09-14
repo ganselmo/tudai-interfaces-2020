@@ -1,6 +1,6 @@
 "use strict"
 import { pencil, eraser } from './tools.js';
-import { negative, binarization, sepia, lightness,saturation } from './simpleEffects.js';
+import { negative, binarization, sepia, lightness, saturation, detection, blur } from './simpleEffects.js';
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -9,32 +9,32 @@ document.addEventListener("DOMContentLoaded", function () {
     const canvasSpace = document.querySelector('#canvasSpace')
     canvas.height = window.innerHeight * 0.75;
     canvas.width = canvasSpace.offsetWidth * 0.95;
-    let change = false;
-    let context = canvas.getContext('2d');
+    let context = canvas.getContext("2d");
+    context.fillStyle = "#FFFFFF";
+    context.fillRect(0, 0, canvas.width, canvas.height)
+
     const pos = { x: 0, y: 0 };
-    function reportWindowSize() {
-        if (!change) {
-            canvas.height = window.innerHeight * 0.75;
-            canvas.width = canvasSpace.offsetWidth * 0.95;
-        }
 
 
-    }
 
-    window.onresize = reportWindowSize;
 
     const input = document.querySelector('#file');
 
 
 
-    context.fillStyle = "#FFFFFF";
-    context.fillRect(0, 0, canvas.width, canvas.heigth)
+
+
     let actualTool = pencil;
+
     const blankButton = document.querySelector('#blankButton');
     const pencilButton = document.querySelector('#pencilButton');
     const eraserButton = document.querySelector('#eraserButton');
 
+    const fromFileButton = document.querySelector('#fromfile');
 
+    fromFileButton.addEventListener('click', function () {
+        document.querySelector('#file').click();
+    })
 
     blankButton.addEventListener("click", function () {
         imageBlank(context)
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function createEvListDown(e) {
         setActualPos(e);
-        toolDraw(e);
+
         this.addEventListener('mousemove', createEvlistMove);
     }
     function createEvlistMove(e) {
@@ -88,22 +88,14 @@ document.addEventListener("DOMContentLoaded", function () {
         context.lineTo(pos.x, pos.y);
 
         context.stroke();
-
-
     }
-
-
-
-
-
     input.onchange = e => {
 
-        change = true;
         const file = e.target.files[0];
         if (file != undefined) {
             imageFromFile(file);
         }
-
+        $('#exampleModal').modal('hide');
         // e.target.files[0] = undefined
     }
 
@@ -115,13 +107,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Draw image data to the canvas
-
     function imageDrawer(image, context) {
 
         const imageAspectRatio = (1.0 * image.height) / image.width;
         const imageScaleWidth = canvas.width;
         const imageScaleHeight = canvas.width * imageAspectRatio;
+        canvas.height = imageScaleHeight;
         context.drawImage(image, 0, 0, imageScaleWidth, imageScaleHeight);
 
     }
@@ -136,13 +127,17 @@ document.addEventListener("DOMContentLoaded", function () {
             image.src = content;
             image.onload = function () {
                 imageDrawer(this, context)
+
             }
 
         }
+
     }
 
     function imageBlank(context) {
         context.clearRect(0, 0, canvas.width, canvas.height);
+        context.fillStyle = "#FFFFFF";
+        context.fillRect(0, 0, canvas.width, canvas.height)
 
     }
 
@@ -151,38 +146,118 @@ document.addEventListener("DOMContentLoaded", function () {
     const negativeButton = document.querySelector('#negative');
 
     negativeButton.addEventListener('click', function () {
-        negative.process(context.getImageData(0,0,canvas.width,canvas.height),context)
-    })
-    const nLightnessButton = document.querySelector('#nLightness');
-    nLightnessButton.addEventListener('click', function () {
 
-        lightness.process(context.getImageData(0,0,canvas.width,canvas.height),context,-5)
-    })
-    const pLightnessButton = document.querySelector('#pLightness');
-    pLightnessButton.addEventListener('click', function () {
 
-        lightness.process(context.getImageData(0,0,canvas.width,canvas.height),context,5)
-    })
-    const nSaturationButtion = document.querySelector('#nSaturation');
-    nSaturationButtion.addEventListener('click', function () {
+        const imageData = negative.process(context.getImageData(0, 0, canvas.width, canvas.height))
+        context.putImageData(imageData, 0, 0);
 
-        saturation.process(context.getImageData(0,0,canvas.width,canvas.height),context,-5)
     })
-    const pSaturationButtion = document.querySelector('#pSaturation');
-    pSaturationButtion.addEventListener('click', function () {
+    const lightnessInput = document.querySelector('#lightness');
+    lightnessInput.onchange = function () {
+        let value = this.value;
+        console.log(value)
+        showSpinner()
+        setTimeout(function () {
+            let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 
-        saturation.process(context.getImageData(0,0,canvas.width,canvas.height),context,5)
-    })
+            for (let index = 0; index < value; index++) {
+
+                imageData = lightness.process(imageData, 1);
+
+            }
+            context.putImageData(imageData, 0, 0);
+            document.querySelector('.spinner-container').style.display = "none"
+        }, 1);
+
+    }
+
+    const saturationInput = document.querySelector('#saturation');
+
+
+    saturationInput.onchange = function () {
+
+        let value = this.value;
+        showSpinner()
+        setTimeout(function () {
+            let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+            for (let index = 0; index < value; index++) {
+
+                imageData = saturation.process(imageData, 1);
+
+            }
+            context.putImageData(imageData, 0, 0);
+            document.querySelector('.spinner-container').style.display = "none"
+        }, 1);
+
+    }
+
+    const showSpinner = () => {
+        const loadingSpinner = document.querySelector('.spinner-container');
+        loadingSpinner.style.display = "flex"
+
+    }
+
+
     const binarizationButton = document.querySelector('#binarization');
     binarizationButton.addEventListener('click', function () {
-        binarization.process()
+        showSpinner()
+        setTimeout(function () {
+            const imageData = binarization.process(context.getImageData(0, 0, canvas.width, canvas.height))
+            context.putImageData(imageData, 0, 0);
+            document.querySelector('.spinner-container').style.display = "none"
+        }, 1)
     })
+
     const sepiaButton = document.querySelector('#sepia');
     sepiaButton.addEventListener('click', function () {
-        sepia.process(context.getImageData(0,0,canvas.width,canvas.height),context)
+        showSpinner()
+        setTimeout(function () {
+            const imageData = sepia.process(context.getImageData(0, 0, canvas.width, canvas.height))
+            context.putImageData(imageData, 0, 0);
+            document.querySelector('.spinner-container').style.display = "none"
+        }, 10)
+    })
+
+    const sobelButton = document.querySelector('#sobel');
+    sobelButton.addEventListener('click', function () {
+        showSpinner()
+        setTimeout(function () {
+            const imageData = detection.process(context.getImageData(0, 0, canvas.width, canvas.height))
+            context.putImageData(imageData, 0, 0);
+            document.querySelector('.spinner-container').style.display = "none"
+        }, 10)
+    })
+
+    const blurButton = document.querySelector('#blur');
+    blurButton.addEventListener('click', function () {
+        showSpinner()
+        setTimeout(function () {
+            const imageData = blur.process(context.getImageData(0, 0, canvas.width, canvas.height))
+            context.putImageData(imageData, 0, 0);
+            document.querySelector('.spinner-container').style.display = "none"
+        }, 10)
+
     })
 
 
 
+
+    document.getElementById('btn-download').addEventListener("click", function(e) {
+
+    
+        var dataURL = canvas.toDataURL("image/jpeg", 1.0);
+    
+        downloadImage(dataURL, 'my-canvas.jpeg');
+    });
+    
+    // Save | Download image
+    function downloadImage(data, filename = 'untitled.jpeg') {
+        var a = document.createElement('a');
+        a.href = data;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+    }
 
 })

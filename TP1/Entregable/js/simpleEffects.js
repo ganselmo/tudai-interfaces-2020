@@ -1,6 +1,12 @@
+
+import {Sobel} from './sobel.js';
+import {blur as Blur} from './blur.js';
 export const negative =
 {
-    process: function (imageData, ctx) {
+    process: function (imageData) {
+
+   
+        
         for (let x = 0; x < imageData.height; x++) {
 
             for (let y = 0; y < imageData.width; y++) {
@@ -9,28 +15,29 @@ export const negative =
                 setPixel(imageData, x, y, 255 - rgba.r, 255 - rgba.g, 255 - rgba.b, 255 - rgba.a);
             }
         }
-        ctx.putImageData(imageData, 0, 0);
+        return imageData
     }
 
 }
 
 export const lightness =
 {
-    process: function (imageData, ctx,lightness) {
+    process: function (imageData,lightness) {
+
         for (let x = 0; x < imageData.height; x++) {
 
             for (let y = 0; y < imageData.width; y++) {
                 let rgba = getPixel(imageData, x, y);
-                
-                let hsla = RGBAToHSLA(rgba.r,rgba.g,rgba.b,rgba.a);
 
-                hsla.l = hsla.l+lightness;
+                let hsla = RGBAToHSLA(rgba.r, rgba.g, rgba.b, rgba.a);
 
-                rgba = HSLAToRGBA(hsla.h,hsla.s,hsla.l,hsla.a)
-                setPixel(imageData, x, y, rgba.r,  rgba.g,  rgba.b,  rgba.a);
+                hsla.l = hsla.l + lightness;
+
+                rgba = HSLAToRGBA(hsla.h, hsla.s, hsla.l, hsla.a)
+                setPixel(imageData, x, y, rgba.r, rgba.g, rgba.b, rgba.a);
             }
         }
-        ctx.putImageData(imageData, 0, 0);
+        return imageData;
     }
 
 }
@@ -39,44 +46,46 @@ export const lightness =
 
 export const binarization =
 {
-    process: function (imageData, ctx) {
+    process: function (imageData) {
 
         for (let x = 0; x < imageData.height; x++) {
 
             for (let y = 0; y < imageData.width; y++) {
 
                 let rgba = getPixel(imageData, x, y);
-               
-                const redOut = rgba.r*0.393+rgba.r*0.769+rgba.b*0.189;
-                const greenOut = rgba.r*0.349 + rgba.r*0.686 + rgba.b*0.168;
-                const blueOut = rgba.r*0.272 + rgba.r*0.534 + rgba.b*0.131;
-                
-                setPixel(imageData, x, y, redOut,  greenOut,  blueOut,  rgba.a);
+
+                if (rgba.r + rgba.g + rgba.b < (255 * 3) / 2) {
+                    setPixel(imageData, x, y, 0, 0, 0, rgba.a);
+                }
+                else {
+                    setPixel(imageData, x, y, 255, 255, 255, rgba.a);
+                }
+
             }
         }
-        ctx.putImageData(imageData, 0, 0);
+        return imageData;
 
     }
 }
 
 export const sepia =
 {
-    process: function (imageData, ctx) {
+    process: function (imageData) {
 
         for (let x = 0; x < imageData.height; x++) {
 
             for (let y = 0; y < imageData.width; y++) {
 
                 let rgba = getPixel(imageData, x, y);
-               
-                const redOut = rgba.r*0.393+rgba.r*0.769+rgba.b*0.189;
-                const greenOut = rgba.r*0.349 + rgba.r*0.686 + rgba.b*0.168;
-                const blueOut = rgba.r*0.272 + rgba.r*0.534 + rgba.b*0.131;
-                
-                setPixel(imageData, x, y, redOut,  greenOut,  blueOut,  rgba.a);
+
+                const redOut = rgba.r * 0.393 + rgba.r * 0.769 + rgba.b * 0.189;
+                const greenOut = rgba.r * 0.349 + rgba.r * 0.686 + rgba.b * 0.168;
+                const blueOut = rgba.r * 0.272 + rgba.r * 0.534 + rgba.b * 0.131;
+
+                setPixel(imageData, x, y, redOut, greenOut, blueOut, rgba.a);
             }
         }
-        ctx.putImageData(imageData, 0, 0);
+        return imageData;
 
     }
 
@@ -85,22 +94,59 @@ export const sepia =
 
 export const saturation =
 {
-    process: function (imageData, ctx,saturation) {
-        console.log('satur')
+    process: function (imageData,saturation) {
+
         for (let x = 0; x < imageData.height; x++) {
 
             for (let y = 0; y < imageData.width; y++) {
                 let rgba = getPixel(imageData, x, y);
-                let hsla = RGBAToHSLA(rgba.r,rgba.g,rgba.b,rgba.a);
+                let hsla = RGBAToHSLA(rgba.r, rgba.g, rgba.b, rgba.a);
                 hsla.s = hsla.s + saturation;
-                rgba = HSLAToRGBA(hsla.h,hsla.s,hsla.l,hsla.a)
-                setPixel(imageData, x, y, rgba.r,  rgba.g,  rgba.b,  rgba.a);
+                rgba = HSLAToRGBA(hsla.h, hsla.s, hsla.l, hsla.a)
+                setPixel(imageData, x, y, rgba.r, rgba.g, rgba.b, rgba.a);
             }
         }
-        ctx.putImageData(imageData, 0, 0);
+        return imageData;
     }
 
 }
+
+export const detection =
+{
+    process: function (imageData) {
+
+
+
+    
+        var sobelData = Sobel(imageData);
+
+        var sobelImageData = sobelData.toImageData();
+        return sobelImageData;
+    }
+
+
+
+
+}
+
+export const blur =
+{
+    process: function (imageData) {
+
+
+
+    
+        var blurData = Blur(imageData);
+
+        
+        return blurData;
+    }
+
+
+
+
+}
+
 
 
 function setPixel(imageData, x, y, r, g, b, a) {

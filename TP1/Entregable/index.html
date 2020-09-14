@@ -6,65 +6,139 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
 </head>
 
 <body>
 
     <header>
-        <nav>
-            Navigation
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+            <div class="container">
+
+                <div class="col-sm col-sm-3">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Archivo
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Nuevo</a>
+                            <a class="dropdown-item" id="btn-download">Guardar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm col-sm-3">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Edicion
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" id="pencilButton">Lápiz</a>
+                            <a class="dropdown-item" id="eraserButton">Goma</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm col-sm-3">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Efectos Simples
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" id="negative">Negatives</a>
+                            <a class="dropdown-item" id="binarization">Binarization</a>
+                            <a class="dropdown-item" id="sepia">Sepia</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm col-sm-3">
+                    <div class="dropdown ">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Efectos Avanzados
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" id="sobel">Deteccion de Bordes</a>
+                            <a class="dropdown-item" id="blur">Blur</a>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
         </nav>
     </header>
     <main>
-        <aside>
-            <div>Toolbar </div>
-            <div><input type="file" id="file" name="file" accept="image/png, image/jpeg"></div>
-            <div>tools</div>
-            <div>
-                <button id="blankButton">New</button>
-                <button id="pencilButton">pencil</button>
-                <button id="eraserButton">erase</button>
-                <!-- <button>colorSelector</button> -->
+        <div class="container">
+            <div class="ranges">
+                <form class="range-field my-4 ">
+                    <label for="">Saturacion</label>
+                    <input type="range" id='saturation' min="-10" max="10" />
+                </form>
+                <form class="range-field my-4 ">
+                    <label for="">Iluminacion</label>
+                    <input type="range" id='lightness' min="-10" max="10" />
+                </form>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nuevo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="blankButton" class="btn btn-secondary"
+                            data-dismiss="modal">Nuevo</button>
+                        <button type="button" id="fromfile" class="btn btn-secondary" data-dismiss="modal">Desde
+                            Imagen</button>
+                        <input type="file" id="file" name="file" accept="image/png, image/jpeg" style="display: none;">
+                    </div>
+                </div>
             </div>
-            <div>Simple Effects</div>
-            <div>
-                <div>
-                    <button id="negative">Negatives</button>
-                </div>
-  
-                <div>
-                    <button id="binarization">binarization</button>
-                </div>
-                <div>
-                    <button id="sepia">sepia</button>
-                </div>
+        </div>
+        </div>
 
-            </div>
-
-            <div>Saturation</div>
-                <div>
-                    <button id="nSaturation">-</button><button>Saturation</button><button id="pSaturation">+</button>
-                </div>
-            </div>
-            <div>Lightness</div>
-            <div>
-                <button id="nLightness">-</button><button>Lightness</button><button id="pLightness">+</button>
-            </div>
-            </div>
-        </aside>
         <section>
             <div id='canvasSpace'>
-            <canvas id="mycanvas">
-                Your browser does not support the HTML canvas tag.
-            </canvas>
-        </div>
+                <canvas id="mycanvas">
+                    Your browser does not support the HTML canvas tag.
+                </canvas>
+            </div>
+            <div class="spinner-container">
+                <div id="spinner" class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
         </section>
 
     </main>
-    <footer>
-        <div>Foooter</div>
-    </footer>
+
+    <!-- Bootstrap cdn -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
+    <!-- My Scripts -->
     <script type="module" src="js/main.js"></script>
 </body>
 
