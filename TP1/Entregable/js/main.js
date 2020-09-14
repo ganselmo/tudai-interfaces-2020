@@ -143,15 +143,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    const negativeButton = document.querySelector('#negative');
-
-    negativeButton.addEventListener('click', function () {
 
 
-        const imageData = negative.process(context.getImageData(0, 0, canvas.width, canvas.height))
-        context.putImageData(imageData, 0, 0);
+    const showSpinner = () => {
+        const loadingSpinner = document.querySelector('.spinner-container');
+        loadingSpinner.style.display = "flex"
 
-    })
+    }
     const lightnessInput = document.querySelector('#lightness');
     lightnessInput.onchange = function () {
         let value = this.value;
@@ -179,26 +177,43 @@ document.addEventListener("DOMContentLoaded", function () {
         let value = this.value;
         showSpinner()
         setTimeout(function () {
-            let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 
-            for (let index = 0; index < value; index++) {
-
-                imageData = saturation.process(imageData, 1);
-
-            }
+            let imageData = saturationProcess(value);
+            
             context.putImageData(imageData, 0, 0);
             document.querySelector('.spinner-container').style.display = "none"
         }, 1);
 
     }
 
-    const showSpinner = () => {
-        const loadingSpinner = document.querySelector('.spinner-container');
-        loadingSpinner.style.display = "flex"
-
+    function saturationProcess(value)
+    {
+        let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        if(value>0)
+        {
+            for (let index = 0; index < value; index++) {
+                imageData = saturation.process(imageData, 2);
+            }
+        }
+        if(value<0)
+        {
+            for (let index = value; index < 0; index++) {
+                imageData = saturation.process(imageData, -5);
+            }
+        }
+        return imageData;
+        
     }
 
+    const negativeButton = document.querySelector('#negative');
+    negativeButton.addEventListener('click', function () {
+        showSpinner()
+        setTimeout(function () {
+            const imageData = negative.process(context.getImageData(0, 0, canvas.width, canvas.height))
+            context.putImageData(imageData, 0, 0);
+        }, 1)
 
+    })
     const binarizationButton = document.querySelector('#binarization');
     binarizationButton.addEventListener('click', function () {
         showSpinner()
@@ -226,7 +241,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const imageData = detection.process(context.getImageData(0, 0, canvas.width, canvas.height))
             context.putImageData(imageData, 0, 0);
             document.querySelector('.spinner-container').style.display = "none"
-        }, 10)
+        }, 100)
     })
 
     const blurButton = document.querySelector('#blur');
@@ -236,24 +251,24 @@ document.addEventListener("DOMContentLoaded", function () {
             const imageData = blur.process(context.getImageData(0, 0, canvas.width, canvas.height))
             context.putImageData(imageData, 0, 0);
             document.querySelector('.spinner-container').style.display = "none"
-        }, 10)
+        }, 500)
 
     })
 
 
 
 
-    document.getElementById('btn-download').addEventListener("click", function(e) {
+    document.getElementById('btn-download').addEventListener("click", function (e) {
 
-    
+
         var dataURL = canvas.toDataURL("image/jpeg", 1.0);
-    
+
         downloadImage(dataURL, 'my-canvas.jpeg');
     });
-    
+
     // Save | Download image
     function downloadImage(data, filename = 'untitled.jpeg') {
-        var a = document.createElement('a');
+        let a = document.createElement('a');
         a.href = data;
         a.download = filename;
         document.body.appendChild(a);
