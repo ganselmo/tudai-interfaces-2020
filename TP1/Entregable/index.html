@@ -20,7 +20,7 @@
 
                 <div class="col-sm col-sm-3">
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Archivo
                         </button>
@@ -28,13 +28,14 @@
                             <a class="dropdown-item" data-toggle="modal" data-target="#nuevoModal">Nuevo</a>
                             <a class="dropdown-item" data-toggle="modal" data-target="#guardarModal"
                                 id="btnGuardar">Guardar</a>
-                                <a class="dropdown-item" data-toggle="modal" data-target="#descartarModal">Descartar</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#descartarModal">Descartar</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#aboutModal">About</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm col-sm-3">
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Edicion
                         </button>
@@ -80,11 +81,11 @@
     <main>
         <div class="container">
             <div class="ranges">
-                <form class="range-field my-4 ">
+                <form class="range-field my-1">
                     <label for="">Saturacion</label>
                     <input type="range" id='saturation' min="-10" max="10" />
                 </form>
-                <form class="range-field my-4 ">
+                <form class="range-field my-1">
                     <label for="">Iluminacion</label>
                     <input type="range" id='lightness' min="-10" max="10" />
                 </form>
@@ -134,14 +135,14 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal"
                             id="btn-download">Guardar</button>
 
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"
-                           >Cancelar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="descartarModal" tabindex="-1" aria-labelledby="descartarModalLabel" aria-hidden="true">
+        <div class="modal fade" id="descartarModal" tabindex="-1" aria-labelledby="descartarModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -152,20 +153,62 @@
                     </div>
                     <div class="modal-body">
                         Desea descartar imagen y comenzar con Lienzo vacío?
-                       
+
                     </div>
                     <div class="modal-footer">
 
                         <button type="button" class="btn btn-danger" data-dismiss="modal"
                             id="btn-descartar">Descartar</button>
 
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                           >Cancelar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 
                     </div>
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">About</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Resolucion del Ejercicio Entregable del TP1 de la materia Interfaces de usuario e interacción</h4>
+                        <p>
+                            Por Geronimo Anselmo
+                        </p>
+                        <p>
+                            1. El ejercicio fue probado en Chrome y Edge
+                        </p>
+                        <p>
+                            2. La mayoria de los efectos son rapidos a excepcion de blur que dependiendo del tamaño de
+                            la imagen puede llegar a tardar mas de 30 segundos ya que el algoritmo repasa la imagen varias veces.
+                        </p>
+                        <p>
+                            3. Se usó bootstrap en su ultima version para el front end.
+                        </p>
+                        <p>
+                            4. La extención de la descarga es .jpg
+                        </p>
+
+                        <p>
+                            5. El resize responsive del canvas esta desabilitado 
+                        </p>
+                        <p>
+                            6. Al empezar de cero desde imagen, el aspect ratio va a ser el original dependiendo el ancho de la imagen, por lo tanto se va a extender para abajo dependiendo el tamaño.
+                        </p>
+                       
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">Cerrar</button>
+
+                    </div>
+                </div>
+            </div>
         </div>
 
         <section>

@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const canvas = document.querySelector('#mycanvas');
     const canvasSpace = document.querySelector('#canvasSpace')
-    canvas.height = window.innerHeight * 0.75;
-    canvas.width = canvasSpace.offsetWidth * 0.95;
+    canvas.height = window.innerHeight * 0.65;
+    canvas.width = canvasSpace.offsetWidth * 0.90;
     let context = canvas.getContext("2d");
     context.fillStyle = "#FFFFFF";
     context.fillRect(0, 0, canvas.width, canvas.height)
@@ -137,8 +137,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function imageBlank(context) {
-        canvas.height = window.innerHeight * 0.75;
-        canvas.width = canvasSpace.offsetWidth * 0.95;
+        canvas.height = window.innerHeight * 0.65;
+        canvas.width = canvasSpace.offsetWidth * 0.90;
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.fillStyle = "#FFFFFF";
         context.fillRect(0, 0, canvas.width, canvas.height);
