@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
             imageFromFile(file);
         }
         $('#exampleModal').modal('hide');
-        // e.target.files[0] = undefined
+        input.value = ""
     }
 
     function setActualPos(e) {
@@ -115,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
         canvas.height = imageScaleHeight;
         context.drawImage(image, 0, 0, imageScaleWidth, imageScaleHeight);
 
+
     }
 
     function imageFromFile(file) {
@@ -122,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const reader = new FileReader();
         reader.readAsDataURL(file)
         reader.onload = readerEvent => {
+            appReset()
             const content = readerEvent.target.result;
             const image = new Image();
             image.src = content;
@@ -135,14 +137,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function imageBlank(context) {
+        canvas.height = window.innerHeight * 0.75;
+        canvas.width = canvasSpace.offsetWidth * 0.95;
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.fillStyle = "#FFFFFF";
-        context.fillRect(0, 0, canvas.width, canvas.height)
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        appReset()
 
     }
 
-
-
+    document.querySelector('#btn-descartar').addEventListener("click", function () {
+        imageBlank(context)
+    })
+    function appReset() {
+        
+        lightnessInput.value = 0;
+        saturationInput.value = 0;
+    }
 
 
     const showSpinner = () => {
@@ -150,22 +161,38 @@ document.addEventListener("DOMContentLoaded", function () {
         loadingSpinner.style.display = "flex"
 
     }
+
+    const hideSpinner = () => {
+        const loadingSpinner = document.querySelector('.spinner-container');
+        loadingSpinner.style.display = "none"
+
+    }
     const lightnessInput = document.querySelector('#lightness');
     lightnessInput.onchange = function () {
         let value = this.value;
-        console.log(value)
+
         showSpinner()
         setTimeout(function () {
-            let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-
-            for (let index = 0; index < value; index++) {
-
-                imageData = lightness.process(imageData, 1);
-
-            }
+            let imageData = lightnessProcess(value);
             context.putImageData(imageData, 0, 0);
-            document.querySelector('.spinner-container').style.display = "none"
+            hideSpinner()
+            lightnessInput.value = 0;
         }, 1);
+
+    }
+    function lightnessProcess(value) {
+        let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        if (value > 0) {
+            for (let index = 0; index < value; index++) {
+                imageData = lightness.process(imageData, 2);
+            }
+        }
+        if (value < 0) {
+            for (let index = value; index < 0; index++) {
+                imageData = lightness.process(imageData, -2);
+            }
+        }
+        return imageData;
 
     }
 
@@ -179,30 +206,28 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function () {
 
             let imageData = saturationProcess(value);
-            
+
             context.putImageData(imageData, 0, 0);
-            document.querySelector('.spinner-container').style.display = "none"
+            hideSpinner()
+            saturationInput.value = 0;
         }, 1);
 
     }
 
-    function saturationProcess(value)
-    {
+    function saturationProcess(value) {
         let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-        if(value>0)
-        {
+        if (value > 0) {
             for (let index = 0; index < value; index++) {
                 imageData = saturation.process(imageData, 2);
             }
         }
-        if(value<0)
-        {
+        if (value < 0) {
             for (let index = value; index < 0; index++) {
                 imageData = saturation.process(imageData, -5);
             }
         }
         return imageData;
-        
+
     }
 
     const negativeButton = document.querySelector('#negative');
@@ -211,7 +236,8 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function () {
             const imageData = negative.process(context.getImageData(0, 0, canvas.width, canvas.height))
             context.putImageData(imageData, 0, 0);
-        }, 1)
+            hideSpinner()
+        }, 100)
 
     })
     const binarizationButton = document.querySelector('#binarization');
@@ -220,8 +246,8 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function () {
             const imageData = binarization.process(context.getImageData(0, 0, canvas.width, canvas.height))
             context.putImageData(imageData, 0, 0);
-            document.querySelector('.spinner-container').style.display = "none"
-        }, 1)
+            hideSpinner()
+        }, 100)
     })
 
     const sepiaButton = document.querySelector('#sepia');
@@ -230,8 +256,8 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function () {
             const imageData = sepia.process(context.getImageData(0, 0, canvas.width, canvas.height))
             context.putImageData(imageData, 0, 0);
-            document.querySelector('.spinner-container').style.display = "none"
-        }, 10)
+            hideSpinner()
+        }, 100)
     })
 
     const sobelButton = document.querySelector('#sobel');
@@ -240,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function () {
             const imageData = detection.process(context.getImageData(0, 0, canvas.width, canvas.height))
             context.putImageData(imageData, 0, 0);
-            document.querySelector('.spinner-container').style.display = "none"
+            hideSpinner()
         }, 100)
     })
 
@@ -250,7 +276,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function () {
             const imageData = blur.process(context.getImageData(0, 0, canvas.width, canvas.height))
             context.putImageData(imageData, 0, 0);
-            document.querySelector('.spinner-container').style.display = "none"
+            hideSpinner()
         }, 500)
 
     })
@@ -260,17 +286,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById('btn-download').addEventListener("click", function (e) {
 
-
         var dataURL = canvas.toDataURL("image/jpeg", 1.0);
+        let name = document.querySelector('#guardarNombre').value;
 
-        downloadImage(dataURL, 'my-canvas.jpeg');
+        document.querySelector('#guardarNombre').value = ''
+
+        if (name.trim() == '') {
+            name = 'default';
+        }
+        downloadImage(dataURL, name);
     });
 
     // Save | Download image
-    function downloadImage(data, filename = 'untitled.jpeg') {
+    function downloadImage(data, filename) {
         let a = document.createElement('a');
         a.href = data;
-        a.download = filename;
+        a.download = filename + '.jpg';
         document.body.appendChild(a);
         a.click();
     }

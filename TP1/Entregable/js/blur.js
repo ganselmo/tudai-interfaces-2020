@@ -7,7 +7,7 @@ export function blur (imagedata) {
     let height = imagedata.height
     let dotIndex
     let gaussianDot
-    let amount = 2
+    let amount = 4
 
     const weights = getWeights(amount)
 

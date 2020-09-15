@@ -95,7 +95,6 @@ export const sepia =
 export const saturation =
 {
     process: function (imageData,saturation) {
-        console.log(saturation)
         for (let x = 0; x < imageData.height; x++) {
 
             for (let y = 0; y < imageData.width; y++) {

@@ -25,8 +25,10 @@
                             Archivo
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Nuevo</a>
-                            <a class="dropdown-item" id="btn-download">Guardar</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#nuevoModal">Nuevo</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#guardarModal"
+                                id="btnGuardar">Guardar</a>
+                                <a class="dropdown-item" data-toggle="modal" data-target="#descartarModal">Descartar</a>
                         </div>
                     </div>
                 </div>
@@ -88,7 +90,7 @@
                 </form>
             </div>
         </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="nuevoModal" tabindex="-1" aria-labelledby="nuevoModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -97,15 +99,69 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
 
-                    </div>
                     <div class="modal-footer">
-                        <button type="button" id="blankButton" class="btn btn-secondary"
-                            data-dismiss="modal">Nuevo</button>
-                        <button type="button" id="fromfile" class="btn btn-secondary" data-dismiss="modal">Desde
+                        <button type="button" id="blankButton" class="btn btn-secondary btn-block"
+                            data-dismiss="modal">Lienzo Blanco</button>
+                        <button type="button" id="fromfile" class="btn btn-primary btn-block" data-dismiss="modal">Desde
                             Imagen</button>
                         <input type="file" id="file" name="file" accept="image/png, image/jpeg" style="display: none;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="guardarModal" tabindex="-1" aria-labelledby="guardarModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Guardar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Nombre de imagen:</span>
+                            </div>
+                            <input type="text" class="form-control" id='guardarNombre' aria-label="Default"
+                                aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            id="btn-download">Guardar</button>
+
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"
+                           >Cancelar</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="descartarModal" tabindex="-1" aria-labelledby="descartarModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Descartar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Desea descartar imagen y comenzar con Lienzo vacío?
+                       
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"
+                            id="btn-descartar">Descartar</button>
+
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                           >Cancelar</button>
+
                     </div>
                 </div>
             </div>
