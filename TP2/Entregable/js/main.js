@@ -123,8 +123,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     game.insertChip(dropZone.columnNumber, new Chip(30, nextChip.color, nextChip.playerName))
                     gameBoard.highlightColumn(8)
                     gameBoard.drawBoard(game)
+                    setNextTurn()
                 }
-                setNextTurn()
+                
             }
             gameBoard.highlightColumn(8)
         }
