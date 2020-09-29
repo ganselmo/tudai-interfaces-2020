@@ -85,39 +85,50 @@ export class Game {
     checkX() {
 
         let x = 0;
-        let winnerColor;
+
         let winnerChips = []
-        for (let y = 0; y < this.matrix[x].length; y++) {
-            let asserts = 0
-            for (let x = 0; x < this.matrix.length; x++) {
+        let y = 0
+        for (y = 0; y < this.matrix[x].length; y++) {
+            let asserts = 0;
+            winnerChips = [];
+            let x = 0;
+            let nextX;
+            for (x = 1; x < this.matrix.length; x++) {
+                if (this.matrix[x][y] != undefined && this.matrix[x - 1][y] != undefined) {
 
-                if (x != 0) {
-                    if (this.matrix[x][y] != undefined && this.matrix[x - 1][y] != undefined) {
-                        if (this.matrix[x][y].color == this.matrix[x - 1][y].color) {
+                    if (this.matrix[x][y].color == this.matrix[x - 1][y].color) {
+                        asserts++
 
-                            asserts++
+                        if (winnerChips.indexOf(this.matrix[x - 1][y]) === -1) {
                             winnerChips.push(this.matrix[x - 1][y])
-                            if (asserts == 3) {
-                                winnerChips.push(this.matrix[x][y])
-                                winnerColor = this.matrix[x][y].color
-                                this.finished = true;
-                                this.winner = winnerChips;
-                                return
-                            }
                         }
-                        else {
-                            winnerChips = []
-                            asserts = 0
+
+                        if (asserts >= 3) {
+                            if (winnerChips.indexOf(this.matrix[x][y]) === -1) {
+                                winnerChips.push(this.matrix[x][y])
+                            }
+
+                            this.finished = true;
+                            this.winner = winnerChips;
+
                         }
                     }
                     else {
-                        winnerChips = []
+
                         asserts = 0
+                        winnerChips = [];
                     }
 
-
                 }
+                else {
+                    asserts = 0
+                    winnerChips = [];
+                }
+
+
             }
+
+
         }
     }
 
@@ -147,16 +158,25 @@ export class Game {
                 if (this.matrix[x][y] != undefined && this.matrix[x - 1][y - 1] != undefined) {
 
                     if (this.matrix[x][y].color == this.matrix[x - 1][y - 1].color) {
-                        winnerChips.push(this.matrix[x - 1][y - 1]);
                         asserts++
-                        if (asserts == 3) {
-                            winnerChips.push(this.matrix[x][y])
-                            winnerColor = this.matrix[x][y].color
+
+                        if (winnerChips.indexOf(this.matrix[x - 1][y - 1]) === -1) {
+                            winnerChips.push(this.matrix[x - 1][y - 1])
+                        }
+
+                        if (asserts >= 3) {
+
+                            if (winnerChips.indexOf(this.matrix[x][y]) === -1) {
+                                winnerChips.push(this.matrix[x][y])
+                            }
+
                             this.finished = true;
                             this.winner = winnerChips;
-                            return
+
                         }
                     }
+
+
                     else {
                         winnerChips = []
                         asserts = 0
@@ -184,18 +204,26 @@ export class Game {
                 if (this.matrix[x][y] != undefined && this.matrix[x + 1][y - 1] != undefined) {
 
 
-                    if (this.matrix[x][y].color == this.matrix[x + 1][y - 1].color) {
 
-                        winnerChips.push(this.matrix[x + 1][y - 1]);
+                    if (this.matrix[x][y].color == this.matrix[x + 1][y - 1].color) {
                         asserts++
-                        if (asserts == 3) {
-                            winnerChips.push(this.matrix[x][y])
-                            winnerColor = this.matrix[x][y].color
+
+                        if (winnerChips.indexOf(this.matrix[x + 1][y - 1]) === -1) {
+                            winnerChips.push(this.matrix[x + 1][y - 1])
+                        }
+
+                        if (asserts >= 3) {
+
+                            if (winnerChips.indexOf(this.matrix[x][y]) === -1) {
+                                winnerChips.push(this.matrix[x][y])
+                            }
+
                             this.finished = true;
                             this.winner = winnerChips;
-                            return
+
                         }
                     }
+
                     else {
                         winnerChips = []
                         asserts = 0

@@ -30,11 +30,10 @@ export class GameBoard {
     }
     drawWinnerLine(chips) {
         this.ctx.beginPath();
-        console.log(chips)
 
         this.ctx.lineWidth = 7;
         this.ctx.moveTo(chips[0].x, chips[0].y);
-        this.ctx.lineTo(chips[3].x, chips[3].y);
+        this.ctx.lineTo(chips[chips.length-1].x, chips[chips.length-1].y);
         this.ctx.strokeStyle = '#FFFFFF';
         this.ctx.lineCap = 'round'
         this.ctx.stroke();
