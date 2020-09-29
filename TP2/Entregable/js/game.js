@@ -1,39 +1,49 @@
 
 export class Game {
 
-    x;
-    y;
-    matrix;
 
+    matrix;
+    lastPlayed;
+
+    _nextTurn;
+    finished;
     constructor() {
         this.matrix = new Array(7);
         for (let i = 0; i < this.matrix.length; i++) {
             this.matrix[i] = new Array(6);
         }
+        this.lastPlayed = 1;
+        this._nextTurn = 1;
+        this.finished = false;
 
+    }
+
+
+    setNextTurn() {
+        if (this.lastPlayed == 2) {
+
+            this.lastPlayed = 1
+            this._nextTurn = 1
+
+        }
+        else {
+            this.lastPlayed = 2
+            this._nextTurn = 2
+        }
+    
+        return this._nextTurn
     }
 
     checkGameStatus() {
-        console.log('called',this.matrix)
         this.checkY()
         this.checkX()
         this.checkDiagonals()
-        
-
     }
-
-    addFigure(figure) {
-        this.figures.push(figure)
-    }
-
-    getFigures() {
-        return this.figures;
-    }
-
 
     checkY() {
 
         let winnerColor;
+        let winnerChips=[]
         for (let x = 0; x < this.matrix.length; x++) {
             let asserts = 0
             for (let y = 0; y < this.matrix[x].length; y++) {
@@ -42,19 +52,22 @@ export class Game {
                         if (this.matrix[x][y].color == this.matrix[x][y - 1].color) {
 
                             asserts++
-
+                            winnerChips.push(this.matrix[x][y - 1])
                             if (asserts == 3) {
-
+                                winnerChips.push(this.matrix[x][y])
                                 winnerColor = this.matrix[x][y].color
-                                console.log('win', winnerColor)
+                                console.log(winnerChips)
+                                this.finished = true;
                                 return
                             }
                         }
                         else {
+                            winnerChips=[]
                             asserts = 0
                         }
                     }
                     else {
+                        winnerChips=[]
                         asserts = 0
                     }
 
@@ -70,6 +83,7 @@ export class Game {
 
         let x = 0;
         let winnerColor;
+        let winnerChips=[]
         for (let y = 0; y < this.matrix[x].length; y++) {
             let asserts = 0
             for (let x = 0; x < this.matrix.length; x++) {
@@ -79,18 +93,22 @@ export class Game {
                         if (this.matrix[x][y].color == this.matrix[x - 1][y].color) {
 
                             asserts++
-
+                            winnerChips.push(this.matrix[x-1][y])
                             if (asserts == 3) {
+                                winnerChips.push(this.matrix[x][y])
                                 winnerColor = this.matrix[x][y].color
-                                console.log('win', winnerColor)
+                                console.log(winnerChips)
+                                this.finished = true;
                                 return
                             }
                         }
                         else {
+                            winnerChips=[]
                             asserts = 0
                         }
                     }
                     else {
+                        winnerChips=[]
                         asserts = 0
                     }
 
@@ -118,7 +136,7 @@ export class Game {
     checkMainDiagonal(x0, y0) {
         let asserts = 0
         let winnerColor;
-
+        let winnerChips=[]
         for (let x = x0, y = y0; x < this.matrix.length && y < this.matrix[x].length; x++, y++) {
 
             if (x != 0) {
@@ -126,19 +144,23 @@ export class Game {
                 if (this.matrix[x][y] != undefined && this.matrix[x - 1][y - 1] != undefined) {
 
                     if (this.matrix[x][y].color == this.matrix[x - 1][y - 1].color) {
-
+                        winnerChips.push(this.matrix[x-1][y - 1]);
                         asserts++
                         if (asserts == 3) {
+                            winnerChips.push(this.matrix[x][y])
                             winnerColor = this.matrix[x][y].color
-                            console.log('win', winnerColor)
+                            console.log(winnerChips)
+                            this.finished = true;
                             return
                         }
                     }
                     else {
+                        winnerChips=[]
                         asserts = 0
                     }
                 }
                 else {
+                    winnerChips=[]
                     asserts = 0
                 }
 
@@ -150,7 +172,7 @@ export class Game {
 
         let asserts = 0
         let winnerColor;
-
+        let winnerChips=[]
         for (let x = x0, y = y0; x >= 0 && y < this.matrix[x].length; x--, y++) {
 
 
@@ -161,19 +183,23 @@ export class Game {
 
                     if (this.matrix[x][y].color == this.matrix[x + 1][y - 1].color) {
 
-
+                        winnerChips.push(this.matrix[x+1][y - 1]);
                         asserts++
                         if (asserts == 3) {
+                            winnerChips.push(this.matrix[x][y])
                             winnerColor = this.matrix[x][y].color
-                            console.log('win', winnerColor)
+                            console.log(winnerChips)
+                            this.finished = true;
                             return
                         }
                     }
                     else {
+                        winnerChips=[]
                         asserts = 0
                     }
                 }
                 else {
+                    winnerChips=[]
                     asserts = 0
                 }
 
@@ -191,10 +217,12 @@ export class Game {
                 if (this.matrix[x][y + 1] != undefined) {
                     this.matrix[x][y] = chip
                     return;
+
                 }
             }
             else {
                 this.matrix[x][y] = chip
+                return;
             }
 
         }

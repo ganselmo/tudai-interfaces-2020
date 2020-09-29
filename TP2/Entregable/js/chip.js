@@ -2,7 +2,7 @@ import { Figure } from './figure.js';
 
 export class Chip extends Figure {
 
-    r = 50;
+    r = 35;
     color;
     constructor(size,color) {
         super(size)
@@ -14,7 +14,7 @@ export class Chip extends Figure {
         this.y = y;
         ctx.beginPath();
         ctx.arc(x, y, this.r, 0, 2 * Math.PI);
-        ctx.fillStyle = "red";
+        ctx.fillStyle = this.color;
         ctx.fill();
         ctx.closePath();
     }
@@ -49,6 +49,9 @@ export class Chip extends Figure {
     drag(x, y) {
 
     }
-
+    setColor(color)
+    {   
+        this.color = color
+    }
 
 }
