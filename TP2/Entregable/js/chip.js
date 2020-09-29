@@ -4,8 +4,9 @@ export class Chip extends Figure {
 
     r = 35;
     color;
-    constructor(size,color) {
-        super(size)
+    constructor(r,color) {
+        super()
+        this.r =r;
         this.color = color
     }
 

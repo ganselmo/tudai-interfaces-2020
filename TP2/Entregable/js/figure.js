@@ -6,8 +6,7 @@ export class Figure {
     id;
     highlighted;
     
-    constructor(size) {
-        this.size = size;
+    constructor() {
         this.id = this.makeid(8);
         this.highlighted =false;
     }

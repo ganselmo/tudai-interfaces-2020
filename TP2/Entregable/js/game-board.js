@@ -53,7 +53,7 @@ export class GameBoard {
         
         this.ctx.beginPath();
         
-        this.ctx.arc(this.startingX + column * this.blockSize+this.blockSize/2, this.startingY + row * this.blockSize+this.blockSize/2,35,0, 2 * Math.PI);
+        this.ctx.arc(this.startingX + column * this.blockSize+this.blockSize/2, this.startingY + row * this.blockSize+this.blockSize/2,30,0, 2 * Math.PI);
         this.ctx.fillStyle = "white";
         this.ctx.fill();
         this.ctx.closePath();

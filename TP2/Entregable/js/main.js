@@ -14,14 +14,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const canvas = document.querySelector("canvas");
     const ctx = canvas.getContext("2d");
-    const redChip = new Chip(50, 'red')
-    const blackChip = new Chip(50, 'black')
+    const redChip = new Chip(30, 'red')
+    const blackChip = new Chip(30, 'black')
 
     canvas.width = 934;
-    canvas.height = 800;
+    canvas.height = 550;
     canvas.style.border = 'black 1px solid'
 
-    const gameBoard = new GameBoard(200, 150, 90, ctx)
+    const gameBoard = new GameBoard(200, 100, 70, ctx)
     const game = new Game();
 
     gameBoard.drawBoard(game)
