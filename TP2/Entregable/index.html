@@ -1,14 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>4 in line</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
+
 <body>
-    <canvas>
-        
-    </canvas>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">4 en Linea</a>
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" data-toggle="modal" data-target="#nuevoModal" href="#">Nuevo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#aboutModal">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div>
+        <div class="row mt-4">
+            <div class="col-6 col-md-2 ">
+                <div class="container " id='jugando' style='height:100%'>
+                    <div>
+                        <div>Siguiente Jugador:</div>
+                        <div id='nextPlayer'>Jugador 1</div>
+                    </div>
+                    <div>
+                        <div>Tiempo Jugador 1</div>
+                        <div id='tiempo1'></div>
+                    </div>
+                    <div>
+                        <div>Tiempo Jugador 2</div>
+                        <div id='tiempo2'></div>
+                    </div>
+                    <div id='ganador'  class="mt-auto p-2">
+                        <h2>
+                            GANADOR <span id='jugadorGanador'>Jugador 1</span>
+                        </h2>
+                        <button class="btn btn-primary btn-lg btn-block">
+                            RESTART
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <canvas>
+
+            </canvas>
+        </div>
+    </div>
+
+    <div class="modal fade" id="nuevoModal" tabindex="-1" aria-labelledby="nuevoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nuevo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <form style="width:100%">
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">tiempo</label>
+                            <select class="form-control" id="tiempo">
+
+                                <option value="1">1:00</option>
+                                <option value="2">2:00</option>
+                                <option value="3">3:00</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Color Jugador 1</label>
+                            <select class="custom-select" id="color1">
+
+                                <option value="red">Rojo</option>
+                                <option value="green">Verde</option>
+                                <option value="blue">Azul</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Color Jugador 2</label>
+                            <select class="custom-select" id="color2">
+
+                                <option value="black">Negro</option>
+                                <option value="cyan">Celeste</option>
+                                <option value="violet">Violeta</option>
+                            </select>
+                        </div>
+                        <button type="button" id="comenzar" class="btn btn-primary btn-block"
+                            data-dismiss="modal">Comenzar</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">About</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4>Resolucion del Ejercicio Entregable del TP1 de la materia Interfaces de usuario e interacción</h4>
+                    <p>
+                        Por Geronimo Anselmo.
+                    </p>
+                    <p>
+                        1. El ejercicio fue probado en Chrome y Edge.
+                    </p>
+                    <p>
+                        2. La mayoria de los efectos son rapidos a excepcion de blur que dependiendo del tamaño de
+                        la imagen puede llegar a tardar mas de 30 segundos ya que el algoritmo repasa la imagen varias veces.
+                    </p>
+                    <p>
+                        3. Se usó bootstrap en su ultima version para el front end.
+                    </p>
+                    <p>
+                        4. La extensión de la descarga es .jpg
+                    </p>
+
+                    <p>
+                        5. El resize responsive del canvas esta desabilitado.
+                    </p>
+                    <p>
+                        6. Al empezar de cero desde imagen, el aspect ratio va a ser el original dependiendo el ancho de la imagen, por lo tanto se va a extender para abajo dependiendo el tamaño.
+                    </p>
+                   
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
     <script type="module" src="./js/main.js"></script>
 </body>
+
 </html>

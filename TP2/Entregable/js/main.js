@@ -7,9 +7,13 @@ import { GameBoard } from './game-board.js';
 import { DropZones } from './drop-zones.js';
 
 document.addEventListener("DOMContentLoaded", function () {
+
+    const btnComenzar = document.querySelector('#comenzar');
+    btnComenzar.addEventListener('click',newGame);
+
+
     const canvas = document.querySelector("canvas");
     const ctx = canvas.getContext("2d");
-
     const redChip = new Chip(50, 'red')
     const blackChip = new Chip(50, 'black')
 
@@ -17,12 +21,40 @@ document.addEventListener("DOMContentLoaded", function () {
     canvas.height = 800;
     canvas.style.border = 'black 1px solid'
 
-    const gameBoard = new GameBoard(200, 200, 90, ctx)
-    let game = new Game();
+    const gameBoard = new GameBoard(200, 150, 90, ctx)
+    const game = new Game();
 
     gameBoard.drawBoard(game)
 
+    function newGame() {
+        redChip.draw(50, 50, ctx);
+        blackChip.draw(50, 150, ctx);
+        canvas.addEventListener('mousedown', function selectChip(e) {
+            nextChip = getNextPlayer()
+            redChip.draw(50, 50, ctx);
 
+            if (nextChip.isInside(e.offsetX, e.offsetY)) {
+
+                canvas.addEventListener('mousemove', dragging)
+                canvas.addEventListener('mouseup', dropping)
+            }
+        })
+        canvas.addEventListener('mousedown', function selectChip(e) {
+            nextChip = getNextPlayer()
+            redChip.draw(50, 50, ctx);
+
+            if (nextChip.isInside(e.offsetX, e.offsetY)) {
+
+                canvas.addEventListener('mousemove', dragging)
+
+
+
+
+
+                canvas.addEventListener('mouseup', dropping)
+            }
+        })
+    }
 
     game.checkGameStatus()
 
@@ -40,17 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
         element.draw("#333333")
     });
 
-    // canvas.addEventListener('mouseover', function (e) {
-    //     dropzones.dropZones.forEach(dropZone => {
-    //         if (dropZone.isInside(e.offsetX, e.offsetY)) {
-    //             dropZone.highlightColumn('#333')
-    //         }
-    //     })
-    // })
-    // canvas.addEventListener('click', function (e) {
-
-    // })
-    // console.log(game.nextTurn())
 
     function xCounter(c) {
         let counter = 0;
@@ -69,29 +90,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return blackChip;
         }
     }
-    redChip.draw(50, 50, ctx);
-    blackChip.draw(50, 150, ctx);
-    canvas.addEventListener('mousedown', function selectChip(e) {
-        nextChip = getNextPlayer()
-        redChip.draw(50, 50, ctx);
 
-        if (nextChip.isInside(e.offsetX, e.offsetY)) {
-
-            canvas.addEventListener('mousemove', dragging)
-
-
-
-
-
-            canvas.addEventListener('mouseup', dropping)
-        }
-    })
     function dragging(e) {
-
-
-        console.log('called')
-
-
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         gameBoard.drawBoard(game)
         blackChip.draw(50, 150, ctx);
@@ -103,11 +103,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     gameBoard.highlightColumn(dropZone.columnNumber)
 
                 }
-
             }
-
         })
-
     }
 
     function dropping(e) {
@@ -116,12 +113,11 @@ document.addEventListener("DOMContentLoaded", function () {
         dropzones.dropZones.forEach(dropZone => {
             if (dropZone.isInside(e.offsetX, e.offsetY)) {
                 if (xCounter(dropZone.columnNumber) < game.matrix[0].length) {
-                    console.log(game.matrix[dropZone.columnNumber].length)
                     gameBoard.highlightColumn(dropZone.columnNumber)
-
-                    chipDrop(nextChip,e.offsetX,e.offsetY,1000)
-                    
-
+                    game.insertChip(dropZone.columnNumber, new Chip(50, nextChip.color))
+                    //chipDrop(nextChip, e.offsetX, e.offsetY, 1000)
+                    gameBoard.highlightColumn(8)
+                    gameBoard.drawBoard(game)
                 }
                 game.setNextTurn()
             }
@@ -135,28 +131,26 @@ document.addEventListener("DOMContentLoaded", function () {
         game.checkGameStatus()
         canvas.removeEventListener('mouseup', dropping)
     }
- 
 
-    async function chipDrop(chip,x,fromY,toY)
-    {
-        let actualPositionY = fromY;
-        let speed = 1;
-        
-        let intervale = setInterval(function(){ 
-            if(speed>=toY)
-            {
-                clearInterval(intervale)
-                game.insertChip(dropZone.columnNumber, new Chip(50, nextChip.color))
-            }
-            else{
-                console.log(speed)
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                gameBoard.drawBoard(game)
-                chip.draw(x,actualPositionY+speed,ctx)
-                speed = speed * 1.18 ;
-               
-            }
-        }, 10);
-    }
+
+    // function chipDrop(chip, x, fromY, toY) {
+    //     let actualPositionY = fromY;
+    //     let speed = 1;
+
+    //     let intervale = setInterval(function () {
+    //         if (speed >= toY) {
+    //             clearInterval(intervale)
+    //             game.insertChip(dropZone.columnNumber, new Chip(50, nextChip.color))
+    //         }
+    //         else {
+    //             console.log(speed)
+    //             ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //             gameBoard.drawBoard(game)
+    //             chip.draw(x, actualPositionY + speed, ctx)
+    //             speed = speed * 1.18;
+
+    //         }
+    //     }, 10);
+    // }
     // const nextPlayer = new Chip(40, 'red')
 })
