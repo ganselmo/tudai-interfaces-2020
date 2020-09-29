@@ -4,15 +4,18 @@ export class Chip extends Figure {
 
     r = 35;
     color;
-    constructor(r,color) {
+    playerName;
+    constructor(r,color,playerName) {
         super()
         this.r =r;
         this.color = color
+        this.playerName = playerName
     }
 
     draw(x, y, ctx) {
         this.x = x;
         this.y = y;
+        
         ctx.beginPath();
         ctx.arc(x, y, this.r, 0, 2 * Math.PI);
         ctx.fillStyle = this.color;
@@ -45,10 +48,6 @@ export class Chip extends Figure {
     }
     isInside(x, y) {
         return Math.sqrt((x - this.x) * (x - this.x) + (y - this.y) * (y - this.y)) < this.r;
-    }
-
-    drag(x, y) {
-
     }
     setColor(color)
     {   

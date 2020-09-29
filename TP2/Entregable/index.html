@@ -28,27 +28,25 @@
     <div>
         <div class="row mt-4">
             <div class="col-6 col-md-2 ">
-                <div class="container " id='jugando' style='height:100%'>
-                    <div>
-                        <div>Siguiente Jugador:</div>
-                        <div id='nextPlayer'>Jugador 1</div>
+                <div class="container " id='jugandocontainer' style='height:100%'>
+                    <div id='jugando'>
+                        <div>
+                            <div>Siguiente Jugador:</div>
+                            <div id='nextPlayer'></div>
+                            <div id='nextPlayercolor' style="width: 100%; height: 20px;"></div>
+                        </div>
+      
                     </div>
-                    <div>
-                        <div>Tiempo Jugador 1</div>
-                        <div id='tiempo1'></div>
-                    </div>
-                    <div>
-                        <div>Tiempo Jugador 2</div>
-                        <div id='tiempo2'></div>
-                    </div>
-                    <div id='ganador'  class="mt-auto p-2">
+                    <div id='ganador'>
                         <h2>
-                            GANADOR <span id='jugadorGanador'>Jugador 1</span>
+                            GANADOR <span id='jugadorGanador'></span>
                         </h2>
-                        <button class="btn btn-primary btn-lg btn-block">
-                            RESTART
-                        </button>
+                        
                     </div>
+                   
+                    <button class="btn btn-primary btn-lg btn-block" id='restart'>
+                        RESTART
+                    </button>
                 </div>
             </div>
             <canvas>
@@ -69,36 +67,43 @@
                 <div class="modal-footer">
                     <form style="width:100%">
 
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">tiempo</label>
-                            <select class="form-control" id="tiempo">
 
-                                <option value="1">1:00</option>
-                                <option value="2">2:00</option>
-                                <option value="3">3:00</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Color Jugador 1</label>
-                            <select class="custom-select" id="color1">
-
-                                <option value="red">Rojo</option>
-                                <option value="green">Verde</option>
-                                <option value="blue">Azul</option>
-                            </select>
+                        <div class="form-row mt-2">
+                            <div class="col">
+                                <label>Nombre Jugador 1</label>
+                                <input class="form-control" id="nombre1" value="Jugador 1">
+                            </div>
+                            <div class="col">
+                                <label>Color Jugador 1</label>
+                                <select class="custom-select" id="color1">
+                                    <option value="red">Rojo</option>
+                                    <option value="green">Verde</option>
+                                    <option value="blue">Azul</option>
+                                </select>
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label>Color Jugador 2</label>
-                            <select class="custom-select" id="color2">
+                        <div class="form-row mt-2">
+                            <div class="col">
+                                <label>Nombre Jugador 2</label>
+                                <input class="form-control" id="nombre2" value="Jugador 2">
+                            </div>
+                            <div class="col">
+                                <label>Color Jugador 2</label>
+                                <select class="custom-select" id="color2">
 
-                                <option value="black">Negro</option>
-                                <option value="cyan">Celeste</option>
-                                <option value="violet">Violeta</option>
-                            </select>
+                                    <option value="black">Negro</option>
+                                    <option value="cyan">Celeste</option>
+                                    <option value="violet">Violeta</option>
+                                </select>
+                            </div>
                         </div>
-                        <button type="button" id="comenzar" class="btn btn-primary btn-block"
-                            data-dismiss="modal">Comenzar</button>
+
+
+                        <div class="form-row mt-4">
+                            <button type="button" id="comenzar" class="btn btn-primary btn-block"
+                                data-dismiss="modal">Comenzar</button>
+                        </div>
 
                     </form>
                 </div>
@@ -115,7 +120,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4>Resolucion del Ejercicio Entregable del TP1 de la materia Interfaces de usuario e interacción</h4>
+                    <h4>Resolucion del Ejercicio Entregable del TP1 de la materia Interfaces de usuario e interacción
+                    </h4>
                     <p>
                         Por Geronimo Anselmo.
                     </p>
@@ -124,7 +130,8 @@
                     </p>
                     <p>
                         2. La mayoria de los efectos son rapidos a excepcion de blur que dependiendo del tamaño de
-                        la imagen puede llegar a tardar mas de 30 segundos ya que el algoritmo repasa la imagen varias veces.
+                        la imagen puede llegar a tardar mas de 30 segundos ya que el algoritmo repasa la imagen varias
+                        veces.
                     </p>
                     <p>
                         3. Se usó bootstrap en su ultima version para el front end.
@@ -137,9 +144,10 @@
                         5. El resize responsive del canvas esta desabilitado.
                     </p>
                     <p>
-                        6. Al empezar de cero desde imagen, el aspect ratio va a ser el original dependiendo el ancho de la imagen, por lo tanto se va a extender para abajo dependiendo el tamaño.
+                        6. Al empezar de cero desde imagen, el aspect ratio va a ser el original dependiendo el ancho de
+                        la imagen, por lo tanto se va a extender para abajo dependiendo el tamaño.
                     </p>
-                   
+
                 </div>
                 <div class="modal-footer">
 
