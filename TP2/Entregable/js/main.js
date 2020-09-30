@@ -9,8 +9,8 @@ import { DropZones } from './drop-zones.js';
 document.addEventListener("DOMContentLoaded", function () {
     let baseImageBlack = new Image();
     let baseImageWhite = new Image();
-    baseImageBlack.src = '../assets/poker-chip.png'
-    baseImageWhite.src = '../assets/poker-chip-white.png'
+    baseImageBlack.src = '../Entregable/assets/poker-chip.png'
+    baseImageWhite.src = '../Entregable/assets/poker-chip-white.png'
     baseImageBlack.onload = function () {
 
 
