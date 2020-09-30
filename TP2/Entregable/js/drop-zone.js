@@ -22,7 +22,7 @@ export class DropZone {
     draw(color) {
 
         this.ctx.fillStyle = color;
-        this.ctx.fillRect(this.startingX, this.startingY , this.gameBoard.blockSize, this.gameBoard.startingY-20);
+        this.ctx.fillRect(this.startingX+2, this.startingY , this.gameBoard.blockSize-2, this.gameBoard.startingY-20);
 
     }
     highlight(color) {
@@ -31,8 +31,8 @@ export class DropZone {
     }
 
     isInside(x, y) {
-     
-        return x >= this.startingX && x <= this.startingX + this.gameBoard.blockSize && y >= this.startingY && y <= this.startingY + this.height
+
+        return x >= this.startingX+2 && x <= this.startingX -2+ this.gameBoard.blockSize && y >= this.startingY && y <= this.startingY + this.height
     }
 }
 

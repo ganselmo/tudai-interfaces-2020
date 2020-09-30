@@ -30,11 +30,17 @@ export class GameBoard {
     }
     drawWinnerLine(chips) {
         this.ctx.beginPath();
-
-        this.ctx.lineWidth = 7;
+       
+        this.ctx.lineWidth = 9;
         this.ctx.moveTo(chips[0].x, chips[0].y);
         this.ctx.lineTo(chips[chips.length-1].x, chips[chips.length-1].y);
-        this.ctx.strokeStyle = '#FFFFFF';
+        this.ctx.strokeStyle =  '#ffffff';
+        this.ctx.lineCap = 'round'
+        this.ctx.stroke();
+        this.ctx.lineWidth = 3;
+        this.ctx.moveTo(chips[0].x, chips[0].y);
+        this.ctx.lineTo(chips[chips.length-1].x, chips[chips.length-1].y);
+        this.ctx.strokeStyle =  chips[0].color;
         this.ctx.lineCap = 'round'
         this.ctx.stroke();
 
@@ -54,10 +60,10 @@ export class GameBoard {
         this.drawBorder(this.startingX + column * this.blockSize, this.startingY + row * this.blockSize, this.blockSize, this.blockSize)
 
         if (column == this.highlightedColumn) {
-            this.ctx.fillStyle = '#154699';
+            this.ctx.fillStyle = '#5B85A5';
         }
         else {
-            this.ctx.fillStyle = '#031F4E';
+            this.ctx.fillStyle = '#021E34';
         }
         this.ctx.fillRect(this.startingX + column * this.blockSize, this.startingY + row * this.blockSize, this.blockSize, this.blockSize);
 

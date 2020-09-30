@@ -32,17 +32,19 @@
                     <div id='jugando'>
                         <div>
                             <div>Siguiente Jugador:</div>
-                            <div id='nextPlayer'></div>
-                            <div id='nextPlayercolor' style="width: 100%; height: 20px;"></div>
+                            <div style="text-align: center;" id='nextPlayer'></div>
+                           
                         </div>
       
                     </div>
+                    
                     <div id='ganador'>
                         <h2>
                             GANADOR <span id='jugadorGanador'></span>
                         </h2>
                         
                     </div>
+                    <div id='nextPlayercolor' class="mt-2 mb-2"></div>
                    
                     <button class="btn btn-primary btn-lg btn-block" id='restart'>
                         RESTART
@@ -93,8 +95,8 @@
                                 <select class="custom-select" id="color2">
 
                                     <option value="black">Negro</option>
-                                    <option value="cyan">Celeste</option>
-                                    <option value="violet">Violeta</option>
+                                    <option value="#4983B7">Celeste</option>
+                                    <option value="#722AB0">Violeta</option>
                                 </select>
                             </div>
                         </div>
@@ -120,32 +122,34 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4>Resolucion del Ejercicio Entregable del TP1 de la materia Interfaces de usuario e interacción
+                    <h4>Resolucion del Ejercicio Entregable del TP2 de la materia Interfaces de usuario e interacción
                     </h4>
                     <p>
                         Por Geronimo Anselmo.
                     </p>
                     <p>
-                        1. El ejercicio fue probado en Chrome y Edge.
+                        1. El ejercicio fue probado en Chrome.
                     </p>
                     <p>
-                        2. La mayoria de los efectos son rapidos a excepcion de blur que dependiendo del tamaño de
-                        la imagen puede llegar a tardar mas de 30 segundos ya que el algoritmo repasa la imagen varias
-                        veces.
+                        2. Se pueden elegir de entre varios colores para cada jugador.
                     </p>
                     <p>
-                        3. Se usó bootstrap en su ultima version para el front end.
+                        3. las fichas son el conjunto de un color solido mas una imagen de ficha de casino.
                     </p>
                     <p>
-                        4. La extensión de la descarga es .jpg
-                    </p>
-
-                    <p>
-                        5. El resize responsive del canvas esta desabilitado.
+                        4. El jugador que acierte 4 o mas fichas en vertical, horizontal o cualqueira de sus diagonales gana.
                     </p>
                     <p>
-                        6. Al empezar de cero desde imagen, el aspect ratio va a ser el original dependiendo el ancho de
-                        la imagen, por lo tanto se va a extender para abajo dependiendo el tamaño.
+                        5. Las fichas se arrastran y se dejan caer en diferentes Zonas donde las ubican en el eje de las X.
+                    </p>
+                    <p>
+                        6. Estas Zonas se iluminan cuando se pasa por encima con una ficha seleccionada.
+                    </p>
+                    <p>
+                        7. El juego se reinicia con el boton de reinicio.
+                    </p>
+                    <p>
+                        8. El juego fue testeado por varias personas.
                     </p>
 
                 </div>
