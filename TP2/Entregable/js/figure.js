@@ -2,30 +2,12 @@ export class Figure {
 
     x;
     y;
-    size;
     id;
     highlighted;
     
     constructor() {
         this.id = this.makeid(8);
         this.highlighted =false;
-    }
-
-    unhighlight(ctx)
-    {
- 
-
-        
-    }
-
-    highlight(ctx) {
-    
-        
-    }
-
-    draw(x, y, ctx) {
-
-
     }
 
     makeid(length) {
