@@ -1,0 +1,31 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loading-bar{
+    margin-top :50px;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: blue;
+    width: 90%;
+    height: 200px;
+    /* transition: width 3s ease-out; */
+
+}
+/* 
+.loading-bar:hover{
+    
+    width: 0%;
+    transition: width 3s ease-in;
+} */
+
+@keyframes testAnimation
+{
+    from{background-color: blue;}
+    to{background-color: red;}
+}
