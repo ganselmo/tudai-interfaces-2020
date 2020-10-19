@@ -21,7 +21,7 @@
 }
 
 #start {
-  animation: showButton 3s 3s 1 linear forwards;
+  animation: showButton 3s 6s 1 linear forwards;
   font-weight: 500;
   position: absolute;
   visibility: hidden;
@@ -31,7 +31,7 @@
   height: 100px;
   outline: none;
   z-index: 320;
-  color:#f0e7e7;
+  color: #f0e7e7;
   background-color: #451804;
   border: none;
   padding: 15px 32px;
@@ -52,7 +52,7 @@
 }
 
 #start:active {
-transition: linear 0s;
+  transition: linear 0s;
   background-color: #c1440e;
   box-shadow: 0 5px #451804;
   transform: translateY(4px);
@@ -64,8 +64,7 @@ transition: linear 0s;
   top: 10%;
   left: -300px;
   z-index: 300;
-  animation: centerLeft 0.5s 1s 1 linear forwards;
-
+  animation: centerLeft 0.5s 5s 1 linear forwards;
 }
 
 #him {
@@ -73,7 +72,7 @@ transition: linear 0s;
   top: 30%;
   right: -200px;
   z-index: 300;
-  animation: centerRight 0.5s 1.5s 1 linear forwards;
+  animation: centerRight 0.5s 5.5s 1 linear forwards;
 }
 
 #home {
@@ -81,7 +80,7 @@ transition: linear 0s;
   top: 50%;
   left: -300px;
   z-index: 300;
-  animation: centerLeft 0.5s 2s 1 linear forwards;
+  animation: centerLeft 0.5s 6s 1 linear forwards;
 }
 
 .presentation {
@@ -90,8 +89,6 @@ transition: linear 0s;
   font-size: 5em;
   color: #f0e7e7;
   text-shadow: 0px 0px 5px #000;
-
-
 }
 .scene {
   max-height: 1000px;
@@ -130,18 +127,16 @@ transition: linear 0s;
   top: 0;
   left: 0;
   z-index: 1;
-  animation: startingAnimation 50s 0s infinite linear forwards;
+  animation: startingAnimation 50s 3s infinite linear forwards;
 }
 
-@keyframes startingAnimation
-{
+@keyframes startingAnimation {
   from {
     background-position: 0 0;
   }
   to {
     background-position: 10000px 5000px;
   }
-  
 }
 
 #img-1 {
@@ -185,6 +180,33 @@ li {
   }
 }
 
+@keyframes scapeLeft {
+  from {
+    right: 45vw;
+  }
+  to {
+    right: 2000px;
+  }
+}
+
+@keyframes scapeRight {
+  from {
+    left: 40vw;
+
+  }
+  to {
+    left: 2000px;
+  }
+}
+
+@keyframes move-page {
+  from {
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 #intro {
   position: fixed;
 
@@ -209,7 +231,6 @@ li {
 
   height: 1000px;
   width: 100%;
-
   top: 0;
   left: 0;
 
@@ -225,8 +246,8 @@ li {
   background-attachment: fixed;
 }
 
-.flashit {
-  animation: flash ease-out 7s infinite;
+#flashit {
+  animation: flash ease-out 7s 4s infinite;
   animation-delay: 0s;
   visibility: hidden;
 }
@@ -262,5 +283,102 @@ li {
   to {
     opacity: 1;
     visibility: visible;
+  }
+}
+
+@keyframes hideButton {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+#background-loader {
+  background-color: black;
+  position: fixed;
+  z-index: 10;
+  height: 1000px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  animation: fadeout 1s 3s 1 linear forwards;
+}
+
+#loading-spinner {
+  position: absolute;
+  top: 5vw;
+  margin: 0 5%;
+  width: 0%;
+  z-index: 99;
+  height: 100px;
+  background-color: white;
+  animation: loading-spinner 2.5s ease-in 0.5s 1 forwards;
+}
+
+#mousemove {
+  position: absolute;
+  top: 34vw;
+  left: 43.5vw;
+  width: 150px;
+  z-index: 99;
+  height: 150px;
+  animation: fadeout-fadein 1s 0s infinite linear forwards;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  image-rendering: crisp-edges;
+}
+
+@keyframes loading-spinner {
+  from {
+    width: 0;
+  }
+  60% {
+    width: 30%;
+  }
+  90% {
+    width: 90%;
+    opacity: 1;
+  }
+  to {
+    width: 90%;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fadeout-fadein {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

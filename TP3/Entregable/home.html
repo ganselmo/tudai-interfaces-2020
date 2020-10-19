@@ -1,12 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/hamburger.css">
 </head>
+
 <body>
-    
+    <div class="hamburger">
+        <div class="_layer -top"></div>
+        <div class="_layer -mid"></div>
+        <div class="_layer -bottom"></div>
+    </div>
+    <nav class="menuppal">
+        <ul>
+            <li class="hclicked"><a href="./index.html">Intro</a></li>
+            <li class="hclicked"><a href="./home.html">Home</a></li>
+            <li class="hclicked"><a id="cast">Cast</a></li>
+            <li class="hclicked"><a id="events">Events</a></li>
+            <li class="hclicked"><a id="events">Events</a></li>
+        </ul>
+    </nav>
+    <div id="background-loader"></div>
+    <div id="loading-spinner"></div>
+    <div id="sinopsis">
+        <div id="bgmountains"></div>
+        <div id="bgmars1"></div>
+        <div id="title">
+            THE MARTIAN
+        </div>
+        <div id='plot'>
+            <p>
+                During a manned mission to Mars, Astronaut Mark Watney is presumed dead after a fierce storm and left
+                behind by his crew.
+            </p>
+            But Watney has survived and finds himself stranded and alone on the hostile planet.
+            </p>
+            <p>
+                With only meager supplies, he must draw upon his ingenuity, wit and spirit to subsist and find a way to
+                signal to Earth that he is alive.
+            </p>
+        </div>
+    </div>
+    <div id="reparto">
+
+        <div class="portraits">
+            <div id="matt"></div>
+            <div class="legend">
+                <span class="mini"> As Mark Watney, a botanist who is part of the Ares III team, mistakenly presumed
+                    dead after a violent storm on Mars.</span>
+                <span>Matt Damon</span>
+            </div>
+        </div>
+
+        <div class="portraits">
+            <div id="jessica"></div>
+            <div class="legend">
+                <span class="mini">as Commander Melissa Lewis, an officer in the United States Navy, geologist and the
+                    Ares III mission commander</span>
+                <span>Jessica Chastain</span>
+            </div>
+        </div>
+        <div class="portraits">
+            <div id="kate"></div>
+            <div class="legend">
+                <span class="mini">as Beth Johanssen, the Ares III's system operator, developed aptitude for computers
+                    at an early age.</span>
+                <span>Kate Mara</span>
+            </div>
+        </div>
+        <div class="portraits">
+            <div id="michael"></div>
+            <div class="legend">
+
+                <span class="mini">as Major Rick Martinez, a United States Air Force officer and the pilot of the Ares
+                    III mission.</span>
+                <span>Michael Peña</span>
+            </div>
+        </div>
+    </div>
+
 </body>
+<script type='module' src="./js/home.js"></script>
+<script type='module' src="./js/hamburger.js"></script>
 </html>
