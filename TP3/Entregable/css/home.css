@@ -1,7 +1,7 @@
 * {
   padding: 0;
   margin: 0;
-  overflow-x: hidden;
+  overflow: hidden;
   font-family: "FF Oxide Solid";
 }
 @import url(//db.onlinewebfonts.com/c/bc30adee89b44a44a5cfdff676aef0fe?family=FF+Oxide+Solid);
@@ -31,7 +31,7 @@ body
     position: relative;
     display: flex;
     width: 100%;
-    height: 45vw;
+    height: 100vh;
 
 }
 
@@ -169,6 +169,23 @@ body
     opacity: 1;
 
 }
+
+#titleGallery{
+  color: white ;
+  text-shadow: 1px 1px 1px black;
+  z-index: 2;
+  white-space: nowrap;
+  position: fixed;
+  align-self: flex-start;   
+  justify-content: baseline;
+  padding: 0 10%;
+  font-size: 6.5em;
+  visibility: visible;
+  opacity: 1;
+
+}
+
+
 #plot{
 
     z-index: 3;
@@ -190,7 +207,7 @@ body
 
 #reparto{
 
-    height: 45vw;
+    height: 100vh;
     background: url(../assets/marsspace.jpg);
     width: 100%;
     top: 0;
@@ -222,6 +239,7 @@ body
     align-items: center;
     transition: 0.5s;
     opacity: 0.2;
+    
 
 }
 
@@ -229,17 +247,22 @@ body
     height: 600px;
     transition: 0.5s;
     opacity: 1;
+    
+   
 }
 .portraits:hover .legend{
+  animation: rotate360 0.5s 0s 1 ease-out forwards;
     bottom:25px;
-    transition: bottom 0.5s linear
- 
+    transition: bottom 0.5s linear;
+    
 }
 
 .portraits:hover .legend span.mini
 {
     transition: 0.5s;
     opacity: 1;
+
+
 }
 
 #matt{
@@ -252,6 +275,7 @@ body
     border-radius: 20px;
     width: 100%;
     height: 80%;
+
 }
 
 .legend{
@@ -312,4 +336,243 @@ body
     text-align: center;
     margin-top: 25px;
     font-size: 10px;
+}
+
+@keyframes rotate360{
+  0%{
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+  }
+  50%{
+    transform-style: preserve-3d;
+    transform: rotateY(180deg);
+  }
+  100%{
+    transform-style: preserve-3d;
+    transform: rotateY(360deg);
+  }
+}
+
+#descatados{
+  height: 100vh;
+  background: url(../assets/surface.jpg);
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  min-height: 100%;
+  z-index: 1;
+  
+}
+
+.gallery
+{
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#flechaizq {
+  width: 0; 
+  height: 0; 
+  border-right: 100px solid #e77d11;
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent; 
+}
+.flecha{
+  transform: scale(1);
+  transition: 0.3s;
+}
+
+
+.flecha:hover{
+  transform: scale(1.3);
+  transition: 0.3s;
+
+}
+
+#flechader {
+  width: 0; 
+  height: 0; 
+  border-left: 100px solid #e77d11;
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent; 
+}
+
+#flechader:hover{
+  border-left: 100px solid #c1440e;
+}
+
+#flechaizq:hover{
+  border-right: 100px solid #c1440e;
+}
+.imagen{
+  width: 0;
+  height: 0;
+    border-radius: 30px;
+    transition: 0.5s;
+}
+
+.imagen.actual{
+  width: 600px;
+  height: 350px;
+  margin: 30px;
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  transition: 0.5s;
+  z-index: 99;
+
+}
+
+@keyframes toActual{
+  0%{ opacity: 0;}
+  100%{opacity: 1;}
+}
+
+@keyframes disapear{
+  0%{   width: 200px;
+    height: 150px; }
+  100%{  width: 0;
+    height: 0;}
+}
+.imagen.actual > img{
+  
+  background-size: contain;
+  visibility: visible;
+
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 30px;
+  transition: 0.5s;
+}
+
+.imagen.actual:hover{
+  
+  transform: scale(1.5);
+  border-radius: 30px;
+  transition: 0.5s;
+  
+}
+
+.imagen.actual:hover #descatados{
+  opacity: 0.2;
+}
+
+
+.imagen.der 
+{
+  width: 200px;
+  height: 150px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+}
+
+.imagen.der > img{
+  
+  background-size: contain;
+  visibility: visible;
+
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 30px;
+  transition: 0.5s;
+}
+
+.imagen.izq
+{
+  width: 200px;
+  height: 150px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+}
+
+.imagen.izq > img{
+  
+  background-size: contain;
+  visibility: visible;
+
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 30px;
+  transition: 0.5s;
+}
+
+.imagen.izq > img:hover{
+  transform: scale(1.2);
+}
+
+.imagen.der > img:hover{
+  transform: scale(1.2);
+}
+
+
+
+#counterSection{
+  height: 100vh;
+  background: url(../assets/premiere.jpg);
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  min-height: 100%;
+  z-index: 1;
+
+}
+
+.counterContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  width: 100vw;
+}
+
+#titleCounter{
+  color: white ;
+  text-shadow: 1px 1px 1px black;
+  z-index: 2;
+  white-space: nowrap;
+  position: relative;
+  align-self: flex-start;   
+  justify-content: baseline;
+  padding: 0 10%;
+  font-size: 6.5em;
+  visibility: visible;
+  opacity: 1;
+
+  
+
+}
+
+#counter{
+  color: white ;
+  text-shadow: 1px 1px 1px black;
+  z-index: 2;
+  white-space: nowrap;
+  position: relative;
+  align-self: flex-start;   
+  justify-content: baseline;
+  padding: 0 10%;
+  font-size: 6.5em;
+  visibility: visible;
+  opacity: 1;
+
+
 }
