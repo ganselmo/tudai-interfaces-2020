@@ -1,0 +1,178 @@
+* {
+    padding: 0;
+    margin: 0;
+
+    font-family: "FF Oxide Solid";
+  }
+
+  @import url(//db.onlinewebfonts.com/c/bc30adee89b44a44a5cfdff676aef0fe?family=FF+Oxide+Solid);
+  @font-face {
+    font-family: "FF Oxide Solid";
+    src: url("//db.onlinewebfonts.com/t/bc30adee89b44a44a5cfdff676aef0fe.eot");
+    src: url("//db.onlinewebfonts.com/t/bc30adee89b44a44a5cfdff676aef0fe.eot?#iefix")
+        format("embedded-opentype"),
+      url("//db.onlinewebfonts.com/t/bc30adee89b44a44a5cfdff676aef0fe.woff2")
+        format("woff2"),
+      url("//db.onlinewebfonts.com/t/bc30adee89b44a44a5cfdff676aef0fe.woff")
+        format("woff"),
+      url("//db.onlinewebfonts.com/t/bc30adee89b44a44a5cfdff676aef0fe.ttf")
+        format("truetype"),
+      url("//db.onlinewebfonts.com/t/bc30adee89b44a44a5cfdff676aef0fe.svg#FF Oxide Solid")
+        format("svg");
+  }
+  
+#title
+{
+    color: white ;
+    text-shadow: 1px 1px  10px black;
+    z-index: 2;
+    white-space: nowrap;
+    height: 20vh;
+    padding: 0 10%;
+    font-size: 6.5em;
+    visibility: visible;
+    opacity: 1;
+    background-color: black;
+}
+#parallax{
+    background: url(../assets/comentary.jpg);
+    position: fixed;
+    background-size: cover;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    top: 10vh;
+    left: 0;
+    background-repeat: no-repeat;
+}
+
+#commentarySection{
+    height: 100%;
+   
+    z-index: 4;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    padding: 4vh;
+}
+
+
+body{
+    height: 80vh;
+}
+.comentary{
+    border-radius: 10px;
+    min-height: 36vh;
+    width: 30vw;
+    z-index: 6;
+    background-color: ivory;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin:1vw;
+    padding:3vh
+}
+.comentary:nth-child(odd)
+{
+    align-self: flex-start;
+}
+.comentary:nth-child(even)
+{
+    align-self: flex-end;
+}
+.comentary-box
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 3vh 3vw;
+    padding: 3vh;
+    width: 100%;
+}
+
+.comentary .c-header{
+    height: 5vh;
+    width: 100%;
+    font-size: 1.2em;
+}
+
+.comentary .c-header .user
+{
+    
+}
+.comentary .c-content{
+    text-align: center;
+    vertical-align: center;
+    min-height: 5vh;
+    width:100%;
+    border-top: solid 1px black;
+    border-bottom: solid 1px black;
+    padding: 1vh;
+    display: flex;
+    align-items: center;
+}
+
+
+.comentary .c-footer{
+    height: 10vh;
+    display: flex;
+    align-items: center;
+}
+.rater{
+    display: flex;
+    flex: row nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 20vw;
+    height: 4vw;
+}
+.rater .rate img{
+    width: 2vw;
+    height: 5vh;
+    
+}
+
+.rater .rated
+{
+    width: 3vw;
+    display: flex;
+    flex: row nowrap;
+    align-items: center;
+    justify-content: center;
+}
+.rater .rated.yes img{
+    width: 2vw;
+    height: 5vh;
+    content: url(../assets/icons/starComplete.svg);
+    
+}
+
+.rater .rated.no img{
+    width: 2vw;
+    height: 5vh;
+    content: url(../assets/icons/starEmpty.svg);
+    
+}
+
+
+.rater .rate{
+    width: 3vw;
+    display: flex;
+    flex: row nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.rater .rate:hover img{
+    width: 3vw;
+   
+}
+
+.rater .rate:hover{
+    margin: 0vh;
+}
+

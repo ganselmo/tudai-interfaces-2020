@@ -3,15 +3,16 @@ const options = document.querySelectorAll('.hclicked');
 
 function toggleMenu () {
 
-  this.classList.toggle('is-active');
-  document.querySelector( ".menuppal" ).classList.toggle("is_active");
 
+  document.querySelector( ".menuppal" ).classList.toggle("is_active");
+  document.querySelector('.hamburger').classList.toggle("is-active");
 }
 
 menu.addEventListener('click', toggleMenu, false);
 options.forEach(
     (element)=>{
         element.addEventListener('click', toggleMenu, false);
+        
     }
 )
 

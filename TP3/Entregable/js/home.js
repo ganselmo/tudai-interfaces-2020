@@ -1,6 +1,3 @@
-
-
-
 "use strict"
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -77,10 +74,11 @@ document.addEventListener('DOMContentLoaded', function () {
         if (lugarActual == 100 && !cargado) {
             html.scrollTop = 0
             document.addEventListener('wheel', marsWheel)
-
+            sinopsis.style.height = '0';
         }
         if (lugarActual == 100 && cargado) {
             html.scrollTop = 0
+
             document.addEventListener('wheel', marsWheel)
 
             title.style.opacity = 0
@@ -90,8 +88,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             bgmountains.style.top = '-1200px';
             bgmountains.style.animation = 'scapedown 0.9s linear 0.5s 1 forwards'
-
+            sinopsis.style.height = '0';
             sinopsis.style.top = '-1200px';
+
             sinopsis.style.animation = 'scapedown 0.9s linear 0.5s 1 forwards'
 
             plot.style.opacity = 0
@@ -104,28 +103,25 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (lugarActual == 300) {
-            html.scrollTop = 580
-            cargado = true
-            document.removeEventListener('wheel', marsWheel)
-            bgmountains.style.top = 0;
-            bgmars1.style.top = 0;
-            bgmars1.style.animation = 'scapeup 0.9s linear 0.5s 1 forwards'
-            bgmountains.style.animation = 'scapeup 0.9s linear 0.5s 1 forwards'
-            sinopsis.style.animation = 'scapeup 0.9s linear 0.5s 1 forwards'
-            plot.style.visibility = 'visible'
-            plot.style.opacity = 1
-            plot.style.animation = 'scapeup 0.9s linear 0.5s 1 forwards'
+            movetoCast();
         }
-        if (lugarActual == 500) {
-            html.scrollTop = 1250
+        if (lugarActual == 400) {
+
+            moveToGallery()
         }
 
-        if (lugarActual == 600) {
-            html.scrollTop = 2000
+        if (lugarActual == 500) {
+
+            moveToCounter()
         }
         if (lugarActual > 700) {
             lugarActual = 700
         }
+        if (lugarActual < 0) {
+            lugarActual = 0
+        }
+
+        
 
 
     }, { passive: false });
@@ -208,25 +204,100 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const counter = document.querySelector('#counter')
 
+
+
     setInterval(function () {
-        counter.innerHTML= ''
+        counter.innerHTML = ''
         let p = document.createElement('p');
-        let countDownDate = new Date('10-20-2020 00:00:00')
+        let countDownDate = new Date('10-30-2020 00:00:00')
         var now = new Date().getTime();
-        console.log(countDownDate,now)
-        var timeleft =  Math.abs(now - countDownDate);
+        // console.log(countDownDate,now)
+        var timeleft = Math.abs(now - countDownDate);
 
         var days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
         var hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
 
-        p.innerHTML = days+' days ' + hours +':' +minutes +':' + seconds.toString()
-            counter.appendChild(p)
-
-    },
-        1000)
+        p.innerHTML = 'T-' + PadLeft(days, 2) + ' days ' + PadLeft(hours, 2) + ':' + PadLeft(minutes, 2) + ':' + PadLeft(seconds, 2);
+        counter.appendChild(p);
+    })
 
 
 
+    function PadLeft(value, length) {
+        return (value.toString().length < length) ? PadLeft("0" + value, length) :
+            value;
+    }
+
+    function movetoCast() {
+        html.scrollTop = 0
+        cargado = true
+        document.removeEventListener('wheel', marsWheel)
+        closeEnter()
+
+    }
+
+    function closeEnter()
+    {
+        bgmountains.style.top = 0;
+        bgmars1.style.top = 0;
+        bgmars1.style.animation = 'scapeup 0.9s linear 0.5s 1 forwards'
+        bgmountains.style.animation = 'scapeup 0.9s linear 0.5s 1 forwards'
+        sinopsis.style.animation = 'scapeup 0.9s linear 0.5s 1 forwards'
+        plot.style.visibility = 'visible'
+        plot.style.opacity = 1
+        plot.style.animation = 'scapeup 0.9s linear 0.5s 1 forwards'
+        sinopsis.style.height = '0';
+    }
+    function moveToGallery() {
+
+        let myElement = document.querySelector('#destacados')
+        let topPos = myElement.offsetTop;
+        console.log(topPos)
+        let checkeo = html.scrollTop;
+        let interval1 = setInterval(function () {
+            checkeo += 4
+            html.scrollTop = checkeo;
+
+            if (checkeo > topPos) {
+                clearInterval(interval1)
+                html.scrollTop = topPos
+            }
+        }, 1)
+    }
+
+    function moveToCounter()
+    {
+        let myElement = document.querySelector('#counterSection')
+        let topPos = myElement.offsetTop;
+        console.log(topPos)
+        let checkeo = html.scrollTop;
+        let interval1 = setInterval(function () {
+            checkeo += 4
+            html.scrollTop = checkeo;
+
+            if (checkeo > topPos) {
+                clearInterval(interval1)
+                html.scrollTop = topPos
+            }
+        }, 1)
+
+    }
+    document.querySelector('#cast').addEventListener('click', function () {
+        lugarActual = 300
+
+        movetoCast()
+    })
+
+    document.querySelector('#galleryHref').addEventListener('click', function () {
+        lugarActual = 500
+        closeEnter()
+        moveToGallery()
+    })
+    document.querySelector('#premiereHref').addEventListener('click', function () {
+        lugarActual = 600
+        closeEnter()
+        moveToCounter()
+    })
 });
