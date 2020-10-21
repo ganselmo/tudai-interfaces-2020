@@ -6,9 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/comentary.css">
+    <link rel="stylesheet" href="./css/hamburger.css">
 </head>
 
 <body>
+    <div id="background-loader"></div>
+    <div id="loading-spinner"></div>
+    <div class="hamburger">
+        <div class="_layer -top"></div>
+        <div class="_layer -mid"></div>
+        <div class="_layer -bottom"></div>
+    </div>
+    <nav class="menuppal">
+        <ul>
+            <li class="hclicked"><a href="./index.html">Intro</a></li>
+            <li class="hclicked"><a href="./home.html">Home</a></li>
+        </ul>
+    </nav>
     <div id=title>
         Comentary Section
     </div>
@@ -21,11 +35,11 @@
         <div class="comentary">
             <div class="comentary-box">
                 <div class="c-header">
-                    <div class="user">Geronimo Anselmo</div>
+                    <div class="user">Pepito Flores</div>
                 </div>
                 <div class="c-content">
                     <span class="comment">
-                        "Muy buena peelicyula"
+                        "Exelente peelicyula"
                     </span>
                 </div>
                 <div class="c-footer">
@@ -42,11 +56,11 @@
         <div class="comentary">
             <div class="comentary-box">
                 <div class="c-header">
-                    <div class="user">Geronimo Anselmo</div>
+                    <div class="user">Juana de Arco</div>
                 </div>
                 <div class="c-content">
                     <span class="comment">
-                        "Muy buena peelicyula"
+                        "No me gusto"
                     </span>
                 </div>
                 <div class="c-footer">
@@ -63,11 +77,33 @@
         <div class="comentary">
             <div class="comentary-box">
                 <div class="c-header">
-                    <div class="user">Geronimo Anselmo</div>
+                    <div class="user">Gerardo morales</div>
                 </div>
                 <div class="c-content">
                     <span class="comment">
-                        "Muy buena peelicyula"
+                        "Me gusto cuando el tipo fue a marte"
+                    </span>
+                </div>
+                <div class="c-footer">
+                    <div class="rater">
+                        <div class="rate" data-rate="1"><img src="./assets/icons/starEmpty.svg" alt=""></div>
+                        <div class="rate" data-rate="2"><img src="./assets/icons/starEmpty.svg" alt=""></div>
+                        <div class="rate" data-rate="3"><img src="./assets/icons/starEmpty.svg" alt=""></div>
+                        <div class="rate" data-rate="4"><img src="./assets/icons/starEmpty.svg" alt=""></div>
+                        <div class="rate" data-rate="5"><img src="./assets/icons/starEmpty.svg" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comentary">
+            <div class="comentary-box">
+                <div class="c-header">
+                    <div class="user">Federico Val</div>
+                </div>
+                <div class="c-content">
+                    <span class="comment">
+                        "Hey not bad"
                     </span>
                 </div>
                 <div class="c-footer">
@@ -89,7 +125,7 @@
                 </div>
                 <div class="c-content">
                     <span class="comment">
-                        "Muy buena peelicyula"
+                        "Muy buena peelicula"
                     </span>
                 </div>
                 <div class="c-footer">
@@ -107,39 +143,13 @@
         <div class="comentary">
             <div class="comentary-box">
                 <div class="c-header">
-                    <div class="user">Geronimo Anselmo</div>
-                </div>
-                <div class="c-content">
-                    <span class="comment">
-                        "Muy buena peelicyula"
-                    </span>
-                </div>
-                <div class="c-footer">
-                    <div class="rater">
-                        <div class="rate" data-rate="1"><img src="./assets/icons/starEmpty.svg" alt=""></div>
-                        <div class="rate" data-rate="2"><img src="./assets/icons/starEmpty.svg" alt=""></div>
-                        <div class="rate" data-rate="3"><img src="./assets/icons/starEmpty.svg" alt=""></div>
-                        <div class="rate" data-rate="4"><img src="./assets/icons/starEmpty.svg" alt=""></div>
-                        <div class="rate" data-rate="5"><img src="./assets/icons/starEmpty.svg" alt=""></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="comentary">
-            <div class="comentary-box">
-                <div class="c-header">
-                    <div class="user">Geronimo Anselmo</div>
+                    <div class="user">Josefina Figueroa</div>
                 </div>
                 <div class="c-content">
                     <span class="comment">
                         "Lorem ipsum dolor sit amet consectetur adipiscing elit, lobortis purus lacus eleifend curabitur
                         porttitor odio fames, tincidunt tortor turpis enim pharetra parturient. Imperdiet aenean quam
-                        lobortis eu nibh mi augue torquent nec congue, aliquet tempor velit habitant elementum dis orci
-                        proin litora, tempus facilisis platea semper porttitor aliquam aptent diam malesuada. Non
-                        suspendisse aptent rhoncus in lacus morbi mattis pellentesque nascetur auctor iaculis, tortor
-                        metus pretium velit penatibus feugiat aliquam dictumst lobortis commodo dis primis, tempus
-                        nostra proin blandit dictum felis fusce facilisi cubilia taciti."
+                        "
                     </span>
                 </div>
                 <div class="c-footer">
@@ -152,6 +162,20 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div id="new-comment-box">
+            <div class="n-header">
+                <div class="title">Leave us a comment!</div>
+                <div class="user"><input type="text" placeholder="Name"></div>
+
+            </div>
+            <div class="n-content">
+                <textarea placeholder="Your feedback..."></textarea>
+            </div>
+            <div class="n-footer">
+                <button>SEND</button>
+            </div>
+        
         </div>
 
 
@@ -160,5 +184,5 @@
 
 </body>
 <script type='module' src="./js/comentary.js"></script>
-
+<script type='module' src="./js/hamburger.js"></script>
 </html>
