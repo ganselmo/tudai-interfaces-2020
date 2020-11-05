@@ -1,0 +1,584 @@
+* {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  font-family: "FF Oxide Solid";
+}
+@import url(//db.onlinewebfonts.com/c/bc30adee89b44a44a5cfdff676aef0fe?family=FF+Oxide+Solid);
+@font-face {
+  font-family: "FF Oxide Solid";
+  src: url("//db.onlinewebfonts.com/t/bc30adee89b44a44a5cfdff676aef0fe.eot");
+  src: url("//db.onlinewebfonts.com/t/bc30adee89b44a44a5cfdff676aef0fe.eot?#iefix")
+      format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/bc30adee89b44a44a5cfdff676aef0fe.woff2")
+      format("woff2"),
+    url("//db.onlinewebfonts.com/t/bc30adee89b44a44a5cfdff676aef0fe.woff")
+      format("woff"),
+    url("//db.onlinewebfonts.com/t/bc30adee89b44a44a5cfdff676aef0fe.ttf")
+      format("truetype"),
+    url("//db.onlinewebfonts.com/t/bc30adee89b44a44a5cfdff676aef0fe.svg#FF Oxide Solid")
+      format("svg");
+}
+body
+{
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+   
+}
+#sinopsis
+{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+
+}
+
+
+#background-loader {
+  background-color: black;
+  position: fixed;
+  z-index: 10;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  animation: scapeup 0.5s 3s 1 ease-out forwards;
+}
+
+#loading-spinner {
+  position: absolute;
+  top: 5vw;
+  margin: 0 5%;
+  width: 0%;
+  z-index: 99;
+  height: 100px;
+  background-color: white;
+  animation: loading-spinner 2.5s ease-in 0.5s 1 forwards;
+}
+
+@keyframes loading-spinner {
+  from {
+    width: 0;
+  }
+  60% {
+    width: 30%;
+  }
+  90% {
+    width: 90%;
+    opacity: 1;
+  }
+  to {
+    width: 90%;
+    opacity: 0;
+  }
+}
+
+@keyframes scapeup {
+  from {
+    top: 0;
+    visibility: visible;
+  }
+  to {
+    top: -1200px;
+    visibility: hidden;
+  }
+}
+@keyframes scapedown {
+    from {
+      top: -1200px;
+      visibility: hidden
+    }
+    to {
+      top: 0;
+      visibility: visible;
+    }
+  }
+@keyframes fadeout {
+    from {
+        opacity: 1;
+        visibility: visible;
+
+      }
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+
+  }
+}
+
+@keyframes fadeoutfadein {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#bgmountains {
+  background: url(../assets/paralax1.png);
+  position: fixed;
+  background-size: cover;
+  z-index: 3;
+  height: 100vh;
+  width: 100%;
+  background-position: 0% 0px;
+  background-repeat: no-repeat;
+}
+
+#bgmars1 {
+  background: url(../assets/surface2.jpg);
+  position: fixed;
+  background-position: contain;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+ 
+  background-repeat: no-repeat;
+}
+
+#title{
+    color: white ;
+    text-shadow: 1px 1px  10px black;
+    z-index: 2;
+    white-space: nowrap;
+    position: fixed;
+    align-self: flex-start;   
+    justify-content: baseline;
+    padding: 0 10%;
+    font-size: 6.5em;
+    visibility: visible;
+    opacity: 1;
+
+}
+
+
+
+
+#plot{
+
+    z-index: 3;
+    position: fixed;
+    top: 20px;
+    left: 0;
+    padding: 0 10%;
+    font-size: 1.5em;
+
+    opacity: 0;
+
+
+}
+
+#plot p{
+
+  margin-bottom: 10px;
+}
+
+#reparto{
+
+    height: 100vh;
+    background: url(../assets/marsspace.jpg);
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-size: cover;
+
+    display: flex;
+
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.portraits{
+    height: 500px;
+    background-color: transparent;
+    width: 300px;
+    margin: 0 10px; 
+    transition: 0.5s;
+    z-index: 7;
+    position: relative;
+    overflow: hidden;
+    
+    display: flex;
+
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    transition: 0.5s;
+    opacity: 0.2;
+    
+
+}
+
+.portraits:hover{
+    height: 600px;
+    transition: 0.5s;
+    opacity: 1;
+    
+   
+}
+.portraits:hover .legend{
+  animation: rotate360 0.5s 0s 1 ease-out forwards;
+    bottom:25px;
+    transition: bottom 0.5s linear;
+    
+}
+
+.portraits:hover .legend span.mini
+{
+    transition: 0.5s;
+    opacity: 1;
+
+
+}
+
+#matt{
+    
+    background: url(../assets/Matt_Damon.jpg);
+    position: relative;
+    z-index: 8;
+    background-size: cover;
+    background-position: center; 
+    border-radius: 20px;
+    width: 100%;
+    height: 80%;
+
+}
+
+.legend{
+    position: absolute;
+    bottom:50px;
+    border-radius: 20px;
+    transition: bottom 0.5s linear;
+    width: 90%;
+    height: 150px;
+    z-index: 7;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#jessica{
+    background: url(../assets/jessica-chastain2.jpg);
+    position: relative;
+    z-index: 8;
+    background-size: cover;
+    background-position: center; 
+    border-radius: 20px;
+    width: 100%;
+    height: 80%;
+
+}
+#kate{
+    background: url(../assets/Kate_Mara.jpg);
+    position: relative;
+    z-index: 8;
+    background-size: cover;
+    background-position: center; 
+    border-radius: 20px;
+    width: 100%;
+    height: 80%;
+}
+#michael{
+    background: url(../assets/Michael_Pena.jpg);
+    position: relative;
+    z-index: 8;
+    background-size: cover;
+    background-position: center; 
+    border-radius: 20px;
+    width: 100%;
+    height: 80%;
+}
+
+.legend span{
+    margin: 10px;
+    margin-top: 0;
+}
+
+
+.legend span.mini{
+    opacity: 0;
+    text-align: center;
+    margin-top: 25px;
+    font-size: 10px;
+}
+
+@keyframes rotate360{
+  0%{
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+  }
+  50%{
+    transform-style: preserve-3d;
+    transform: rotateY(180deg);
+  }
+  100%{
+    transform-style: preserve-3d;
+    transform: rotateY(360deg);
+  }
+}
+
+#destacados{
+  height: 100vh;
+  background: url(../assets/surface.jpg);
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  min-height: 100%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#titleGallery{
+  color: white ;
+  text-shadow: 1px 1px 1px black;
+  z-index: 3;
+  white-space: nowrap;
+  position: relative;
+  align-self: center;   
+  justify-content: baseline;
+  padding: 0 10%;
+  font-size: 6.5em;
+  visibility: visible;
+  opacity: 1;
+
+}
+
+.gallery
+{
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#flechaizq {
+  width: 0; 
+  height: 0; 
+  border-right: 100px solid #e77d11;
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent; 
+}
+.flecha{
+  transform: scale(1);
+  transition: 0.3s;
+}
+
+
+.flecha:hover{
+  transform: scale(1.3);
+  transition: 0.3s;
+
+}
+
+#flechader {
+  width: 0; 
+  height: 0; 
+  border-left: 100px solid #e77d11;
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent; 
+}
+
+#flechader:hover{
+  border-left: 100px solid #c1440e;
+}
+
+#flechaizq:hover{
+  border-right: 100px solid #c1440e;
+}
+.imagen{
+  width: 0;
+  height: 0;
+    border-radius: 30px;
+    transition: 0.5s;
+}
+
+.imagen.actual{
+  width: 600px;
+  height: 350px;
+  margin: 30px;
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  transition: 0.5s;
+  z-index: 99;
+
+}
+
+@keyframes toActual{
+  0%{ opacity: 0;}
+  100%{opacity: 1;}
+}
+
+@keyframes disapear{
+  0%{   width: 200px;
+    height: 150px; }
+  100%{  width: 0;
+    height: 0;}
+}
+.imagen.actual > img{
+  
+  background-size: contain;
+  visibility: visible;
+
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 30px;
+  transition: 0.5s;
+}
+
+.imagen.actual:hover{
+  
+  transform: scale(1.5);
+  border-radius: 30px;
+  transition: 0.5s;
+  
+}
+
+.imagen.actual:hover #descatados{
+  opacity: 0.2;
+}
+
+
+.imagen.der 
+{
+  width: 200px;
+  height: 150px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+}
+
+.imagen.der > img{
+  
+  background-size: contain;
+  visibility: visible;
+
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 30px;
+  transition: 0.5s;
+}
+
+.imagen.izq
+{
+  width: 200px;
+  height: 150px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+}
+
+.imagen.izq > img{
+  
+  background-size: contain;
+  visibility: visible;
+
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 30px;
+  transition: 0.5s;
+}
+
+.imagen.izq > img:hover{
+  transform: scale(1.2);
+}
+
+.imagen.der > img:hover{
+  transform: scale(1.2);
+}
+
+
+
+#counterSection{
+  height: 100vh;
+  background: url(../assets/premiere.jpg);
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  min-height: 100%;
+  z-index: 1;
+
+
+}
+
+.counterContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 100vw;
+  height: 100vh;
+
+}
+
+#titleCounter{
+  color: white ;
+  text-shadow: 1px 1px 1px black;
+  z-index: 2;
+  white-space: nowrap;
+  position: relative;
+
+  justify-content: baseline;
+  padding: 0 10%;
+  font-size: 6.5em;
+  visibility: visible;
+  opacity: 1;
+
+  
+
+}
+
+#counter{
+  color: white ;
+  text-shadow: 1px 1px 1px black;
+  z-index: 2;
+  white-space: nowrap;
+  position: relative;
+
+
+  padding: 0 10%;
+  font-size: 6.5em;
+  visibility: visible;
+  opacity: 1;
+
+}

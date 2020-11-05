@@ -1,0 +1,51 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.center {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+.loading-bar {
+  margin-top: 50px;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: red;
+  width: 0%;
+  height: 200px;
+
+    /* transition: width 3s ease-out; */
+}
+/* 
+.loading-bar:hover{
+    
+    width: 0%;
+    transition: width 3s ease-in;
+} */
+
+.number{
+    position: absolute;
+    top: 50%;
+    left: 45%;
+}
+
+@keyframes testAnimation {
+  from {
+    background-color: blue;
+  }
+  to {
+    background-color: red;
+  }
+}
+
+@keyframes cargando {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 90%;
+  }
+}

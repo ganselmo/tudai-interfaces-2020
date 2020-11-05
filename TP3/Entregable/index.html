@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <div id="background-loader"></div>
+  <div id="loading-spinner"></div>
+  <img src="./assets/icons/noun_mouse scroll_815368.png" alt="" id="mousemove">
+  <span class='presentation' id='bring'>Bring</span>
+  <span class='presentation' id='him'>Him</span>
+  <span class='presentation' id='home'>Home</span>
+  <button id='start'>Start</button>
+  <div id="intro">
+
+    <ul id="scene" data-friction-x="0.03" data-friction-y="0.05">
+      <li class="layer" id="specks" data-depth="0.1"></li>
+      <li class="layer" id="layer-1" data-depth="0.15">
+        <div class="img" id="img-1"></div>
+      </li>
+      <li class="layer" id="layer-2" data-depth="0.25">
+        <div class="img" id="img-2"></div>
+      </li>
+      <li class="layer" id="layer-3" data-depth="0.45">
+        <div class="img" id="img-3"></div>
+      </li>
+    </ul>
+  </div>
+  <div id="flashit" class="lightning"></div>
+</body>
+<script type='module' src="./js/main.js"></script>
+
+</html>
